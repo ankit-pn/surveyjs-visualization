@@ -1,0 +1,1053 @@
+{
+    "title": "Pre-Survey Social Media Information",
+    "description": "You are starting the pre-survey for the information intervention. \n[ENUMERATOR: PLEASE DO NOT USE THE FACT-CHECK IN FRONT OF THE RESPONDENT UNLESS MENTIONED] ",
+    "logoPosition": "right",
+    "pages": [
+      {
+        "name": "Enumerator Details",
+        "title": "Enumerator Details",
+        "elements": [
+          {
+            "type": "radiogroup",
+            "name": "Z01",
+            "title": "Enumerator: please select your name",
+            "isRequired": true,
+            "choices": [
+              {
+                "value": "1",
+                "text": "Test 1"
+              },
+              {
+                "value": "2",
+                "text": "Test 2 "
+              },
+              {
+                "value": "3",
+                "text": "Test 3"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "Z02",
+            "title": "Enumerator: where are you interviewing this person",
+            "isRequired": true,
+            "choices": [
+              {
+                "value": "School",
+                "text": "School "
+              },
+              "Home",
+              "Community Space"
+            ],
+            "showOtherItem": true
+          }
+        ]
+      },
+      {
+        "name": "Enumerator Details 2",
+        "title": "Enumerator Details 2",
+        "elements": [
+          {
+            "type": "text",
+            "name": "Z03",
+            "title": "Please enter the specific {Z02} where you are interviewing this person",
+            "description": "NEED TO FIX: REFERENCE THE TEXT INSTEAD OF THE VALUE OF Z02",
+            "isRequired": true
+          },
+          {
+            "type": "dropdown",
+            "name": "Z04",
+            "title": "Z.04 Enumerator: what was the time slot if the participant? ",
+            "isRequired": true,
+            "choices": [
+              {
+                "value": "1",
+                "text": "Add time"
+              },
+              {
+                "value": "2",
+                "text": "Add time"
+              },
+              {
+                "value": "3",
+                "text": "Add time"
+              }
+            ],
+            "choicesOrder": "random",
+            "showNoneItem": true
+          },
+          {
+            "type": "dropdown",
+            "name": "A01",
+            "visibleIf": "{Z04} anyof ['1', '2', '3']",
+            "title": "A.01 Enumerator: locate the participant at ${z04} time slot. ",
+            "description": "ADD LOGSHEET DETAILS AFTER EXTERNAL CONNECTION CLARITY",
+            "isRequired": true,
+            "choices": [
+              "Item 1",
+              "Item 2"
+            ],
+            "showNoneItem": true
+          }
+        ]
+      },
+      {
+        "name": "Consent_text",
+        "title": "Consent",
+        "elements": [
+          {
+            "type": "expression",
+            "name": "Consent",
+            "title": "Consent Statement",
+            "description": {
+              "default": "Hello, my name is ______. I am working with researchers from Rutgers University in the USA. You have shown interest in a study on social media. I would like to tell you details about the study and ask whether you agree to participate.\nWe are doing this study to learn about information on social media and about how we can create awareness on this topic. We will reach this goal in three steps.\nIn the first step, we will ask you questions about yourself, such as: your education, income, attitudes on social media information. In the second step, we will ask you to donate your data from your WhatsApp groups. You can share with us public, semi-public and semi-private groups. This helps us learn about the information on social media. The first two steps will take thirty to forty-five minutes of your time today. In the third step, you will receive messages on WhatsApp to make you more aware about the information you have received on WhatsApp. The third step will happen during the next two weeks. \nPlease know that any data you share will be anonymised. By anonymised we mean that it will be confidential and encrypted. Your identity will be kept confidential, no one will be able to link the answers you provide to you as an individual nor to anyone else. Moreover, the data will not be shared with anyone beyond the research team, which includes a research assistant, PhD student and Professor. Again, we will use your responses to learn about information on social media and for creating awareness about it. We will publish the general findings of the study and in the process, we will not publish any information that can possibly identify you.\nFor your time and interest in our study we will offer you 500 rupees as a thank you at the end of all the three stages. Beyond this, there is no benefit or risk for you from participating in this survey. Though your responses are invaluable in understanding social media information on WhatsApp in India.\nThis is an independent academic study, and we are not linked to any platform, political party or government agency. Participation in this study is completely voluntary. You are free to decline to participate or to end participation at any time for any reason. Irrespective of you completing the survey, refusing to answer some questions or leaving it in between we will still be grateful for your time.\n\nनमस्ते। मेरा नाम ______ है । मैं अमेरिका में रटगर्स युनिवर्सिटीके प्रोफ़ेसर और रिसर्चेर  के साथ काम कर रहा हूं। आपने सोशल मीडिया पर एक अध्ययन/पाठ में रुचि दिखाई है। मैं आपको अध्ययन/ पाठ के बारे में बताना चाहता हूं और पूछना चाहता हूं कि क्या आप भाग लेने के लिए सहमत हैं।\nहम सोशल मीडिया पर घूमती जानकारी के बारे में समझना चाहते है। और इस विषय पर जागरूकता पैदा करना चाहते हैं। हम तीन चरणों में इस लक्ष्य तक पहुंचेंगे।\nपहले चरण में, हम आपसे आपके बारे में प्रश्न पूछेंगे, जैसे: आपकी शिक्षा, आय, सोशल मीडिया जानकारी पर सोच । दूसरे चरण में, हम आपसे आपके WhatsAppग्रुप से अपना डेटा दान करने का मौका देंगे । आप हमारे साथ सार्वजनिक, अर्ध-सार्वजनिक और अर्ध-निजी ग्रुप शेयर कर सकते हैं । इससे हमें सोशल मीडिया पर मौजूद जानकारी के बारे में जानने में मदद मिलेगी । पहले दो चरणों में आज आपका तीस से पैंतालीस मिनट का समय लगेगा। तीसरे चरण में, आपको WhatsApp पर मैसेज मिलेंगे जो आपको WhatsApp पर घूम रही जानकारी के बारे में जागरूक करेंगे। तीसरा चरण अगले दो हफ्तों के मै होगा.\nकृपया जान लें कि आपके द्वारा शेयर किया गया कोई भी डेटा या इनफार्मेशन अज्ञात रखा जाएगा। अज्ञात से हमारा मतलब है कि यह गोपनीय और एन्क्रिप्टेड होगा। आपकी पहचान गोपनीय रखी जाएगी, कोई भी आपके द्वारा दिए गए उत्तरों को आपसे या किसी अन्य व्यक्ति के साथ लिंक (जोड़) नहीं कर पाएगा। इसके अलावा, डेटा को रिसर्चेरटीम के अलावा किसी के साथ शेयरनहीं किया जाएगा, जिसमें एक रिसर्चअसिस्टेंट, पीएचडी छात्र और प्रोफेसर शामिल हैं। फिर, हम आपकी जवाब का उपयोग सोशल मीडिया पर जानकारी के बारे में जानने और इसके बारे में जागरूकता पैदा करने के लिए करेंगे। हम स्टडीके जेनेरल सीख को पब्लिश करेंगे और इस में, हम ऐसी कोई भी जानकारी नहीं बताएँगे जो आपकी पहचान कर सके ।\nहमआपके समय और रुचि के लिए आपको धन्यवाद के रूप में 500 रुपये देंगे। इसके अलावा, इस सर्वेक्षण में भाग लेने से आपको कोई जोखिम नहीं है। हालाँकि भारत में Whatsapp पर सोशल मीडिया की जानकारी को समझने में आपका योगदान अमूल्य हैं।\nयह एक स्वतंत्र अकादमिक स्टडी है, और हम किसी भी मंच, राजनीतिक दल या सरकारी एजेंसी से जुड़े नहीं हैं। इस स्टडी में हिस्सा लेना आपके ऊपर है। आप किसी भी कारण से किसी भी समय भाग लेने से इनकार कर सकतेहैं। भले ही आपने सर्वेक्षण पूरा कर लिया हो, कुछ प्रश्नों का उत्तर \n\n",
+              "hi": "नमस्ते। मेरा नाम ______ है । मैं अमेरिका में रटगर्स युनिवर्सिटीके प्रोफ़ेसर और रिसर्चेर  के साथ काम कर रहा हूं। आपने सोशल मीडिया पर एक अध्ययन/पाठ में रुचि दिखाई है। मैं आपको अध्ययन/ पाठ के बारे में बताना चाहता हूं और पूछना चाहता हूं कि क्या आप भाग लेने के लिए सहमत हैं।हम सोशल मीडिया पर घूमती जानकारी के बारे में समझना चाहते है। और इस विषय पर जागरूकता पैदा करना चाहते हैं। हम तीन चरणों में इस लक्ष्य तक पहुंचेंगे।पहले चरण में, हम आपसे आपके बारे में प्रश्न पूछेंगे, जैसे: आपकी शिक्षा, आय, सोशल मीडिया जानकारी पर सोच । दूसरे चरण में, हम आपसे आपके WhatsAppग्रुप से अपना डेटा दान करने का मौका देंगे । आप हमारे साथ सार्वजनिक, अर्ध-सार्वजनिक और अर्ध-निजी ग्रुप शेयर कर सकते हैं । इससे हमें सोशल मीडिया पर मौजूद जानकारी के बारे में जानने में मदद मिलेगी । पहले दो चरणों में आज आपका तीस से पैंतालीस मिनट का समय लगेगा। तीसरे चरण में, आपको WhatsApp पर मैसेज मिलेंगे जो आपको WhatsApp पर घूम रही जानकारी के बारे में जागरूक करेंगे। तीसरा चरण अगले दो हफ्तों के मै होगा.कृपया जान लें कि आपके द्वारा शेयर किया गया कोई भी डेटा या इनफार्मेशन अज्ञात रखा जाएगा। अज्ञात से हमारा मतलब है कि यह गोपनीय और एन्क्रिप्टेड होगा। आपकी पहचान गोपनीय रखी जाएगी, कोई भी आपके द्वारा दिए गए उत्तरों को आपसे या किसी अन्य व्यक्ति के साथ लिंक (जोड़) नहीं कर पाएगा। इसके अलावा, डेटा को रिसर्चेरटीम के अलावा किसी के साथ शेयरनहीं किया जाएगा, जिसमें एक रिसर्चअसिस्टेंट, पीएचडी छात्र और प्रोफेसर शामिल हैं। फिर, हम आपकी जवाब का उपयोग सोशल मीडिया पर जानकारी के बारे में जानने और इसके बारे में जागरूकता पैदा करने के लिए करेंगे। हम स्टडीके जेनेरल सीख को पब्लिश करेंगे और इस में, हम ऐसी कोई भी जानकारी नहीं बताएँगे जो आपकी पहचान कर सके ।हमआपके समय और रुचि के लिए आपको धन्यवाद के रूप में 500 रुपये देंगे। इसके अलावा, इस सर्वेक्षण में भाग लेने से आपको कोई जोखिम नहीं है। हालाँकि भारत में Whatsapp पर सोशल मीडिया की जानकारी को समझने में आपका योगदान अमूल्य हैं।यह एक स्वतंत्र अकादमिक स्टडी है, और हम किसी भी मंच, राजनीतिक दल या सरकारी एजेंसी से जुड़े नहीं हैं। इस स्टडी में हिस्सा लेना आपके ऊपर है। आप किसी भी कारण से किसी भी समय भाग लेने से इनकार कर सकतेहैं। भले ही आपने सर्वेक्षण पूरा कर लिया हो, कुछ प्रश्नों का उत्तर "
+            }
+          },
+          {
+            "type": "expression",
+            "name": "question5",
+            "title": "Please have a look at this document explaining what I have said. [Enumerator: please hand the participant the document and allow them some time to look at it.]"
+          },
+          {
+            "type": "text",
+            "name": "Consent_Q1",
+            "title": "Do you have any questions for me? ",
+            "description": "Enumerator, please note the participants questions verbatim in the text field. To answer the question please stick to the exact wording used in the consent and handout.",
+            "isRequired": true
+          },
+          {
+            "type": "text",
+            "name": "Consent_Q2",
+            "title": "Enumerator: Were there any explanations lacking in the consent or handout? ",
+            "isRequired": true
+          },
+          {
+            "type": "boolean",
+            "name": "Consent_Q3_main",
+            "title": "The active cooperation of many participants is necessary to make this study successful. Would you agree to participate in our study?",
+            "description": "REMEMBER TO ADD AN END SURVEY NOTE IN CASE OF NO",
+            "isRequired": true
+          }
+        ]
+      },
+      {
+        "name": "demographics",
+        "visibleIf": "{Consent_Q3_main} = true",
+        "title": "Demographics",
+        "elements": [
+          {
+            "type": "expression",
+            "name": "Note_1",
+            "title": "Thank you. We will start the first stage of the survey now. I will ask you a few questions about yourself first. \nधन्यवाद। हम अब सर्वेक्षण का पहला चरण शुरू करेंगे।' सबसे पहले मैं आपसे आपके बारे में कुछ सवाल पूछूंगा।"
+          },
+          {
+            "type": "radiogroup",
+            "name": "B01A",
+            "title": "How old are you? आपकी उम्र कितनी है?",
+            "description": "[ENUMERATOR: DO NOT READ RESPONSE OPTIONS. IF THE RESPONDENT\nINDICATES “STILL IN SCHOOL” OR STATES THEY HAVE STARTED BUT NOT\nCOMPLETED A LEVEL OF EDUCATION, ASK: “What is the HIGHEST level of education COMPLETED?” AND RECORD RESPONSE.]",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Illiterate"
+              },
+              {
+                "value": "2 ",
+                "text": "Literate but no formal schooling"
+              },
+              {
+                "value": "3 ",
+                "text": "Primary education (primary certificate)"
+              },
+              {
+                "value": "4 ",
+                "text": "Upper primary (upper primary certificate)"
+              },
+              {
+                "value": "5 ",
+                "text": "High school; Industrial training institute (matriculation certificate or ITI certificate)"
+              },
+              {
+                "value": "6 ",
+                "text": "Senior secondary / Intermediate (senior secondary school leaving certificate)"
+              },
+              {
+                "value": "7 ",
+                "text": "Technical education training"
+              },
+              {
+                "value": "8 ",
+                "text": "Nursing, general nursing and midwifery (GNM); Junior teachers training (diploma)"
+              },
+              {
+                "value": "9 ",
+                "text": "Bachelor (university 1st) / MBBS, LLB"
+              },
+              {
+                "value": "10 ",
+                "text": "Master (university 2nd) / Post-graduate diploma"
+              },
+              {
+                "value": "11 ",
+                "text": "Doctor (tertiary 2nd)"
+              },
+              {
+                "value": "98 ",
+                "text": "Don't know (DO NOT READ)"
+              },
+              {
+                "value": "99 ",
+                "text": "Refused (DO NOT READ)"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "B03",
+            "title": "What is your occupation? आपका व्यवसाय क्या है?",
+            "choices": [
+              "Item 1",
+              "Item 2",
+              "Item 3"
+            ]
+          },
+          {
+            "type": "text",
+            "name": "B04",
+            "title": "How much money do you receive in one month? This could include money given to you from relatives or remittances or any small jobs you may do. \nआपको एक महीने में कितना पैसा मिलता है? इसमें रिश्तेदारों से आपको दिया गया धन या प्रेषण या आपके द्वारा किया जाने वाला कोई छोटा काम शामिल हो सकता है।",
+            "description": "Enumerator: if the respondent does not know, please ask them for their best guess. Record the amount in Rupees. Enter -77 if they refuse to answer. Enter -99 if they don’t know"
+          },
+          {
+            "type": "radiogroup",
+            "name": "B05",
+            "title": "What is your present religion, if any? Are you Hindu, Muslim, Christian, Sikh, Buddhist, Jain, some other religion or have no religion? \nआपका वर्तमान धर्म क्या है, यदि कोई है? क्या आप हिंदू, मुस्लिम, ईसाई, सिख, बौद्ध हैं? जैन, कोई और धर्म या कोई धर्म नहीं?\n",
+            "description": "[INTERVIEWER: DO NOT JUDGE BASED ON APPEARANCE; READ THE ENTIRE QUESTION. IF RESPONDENT NAMES MORE THAN ONE OF THESE GROUPS, PROBE TO LEARN WHICH RELIGION THE RESPONDENT IDENTIFIES WITH MORE AND RECORD RESPONSE HERE. RECORD ANY OTHER RESPONSES IN THE SECONDARY RESPONSE QUESTION.]",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Hindu"
+              },
+              {
+                "value": "2 ",
+                "text": "Muslim (DO NOT READ: Sunni, Shia, Bohra, Ahmadiyya, Sufi, Aga Khani, etc.)"
+              },
+              {
+                "value": "3 ",
+                "text": "Christian (DO NOT READ: Church of North India, Catholic, etc.)"
+              },
+              {
+                "value": "4 ",
+                "text": "Sikh"
+              },
+              {
+                "value": "5 ",
+                "text": "Buddhist (DO NOT READ: Navayana, Therevada, Ambedkarite, etc.)"
+              },
+              {
+                "value": "6 ",
+                "text": "Jain"
+              },
+              {
+                "value": "7 ",
+                "text": "Some other religion"
+              },
+              {
+                "value": "8 ",
+                "text": "No religion (DO NOT READ: atheist, no particular religion)"
+              },
+              {
+                "value": "9 ",
+                "text": "Parsi (DO NOT READ)"
+              },
+              {
+                "value": "98 ",
+                "text": "Don’t know (DO NOT READ)"
+              },
+              {
+                "value": "99 ",
+                "text": "Refused (DO NOT READ)"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "B06",
+            "title": "Are you from a …? क्या आप ... से हैं?",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "General Category"
+              },
+              {
+                "value": "2 ",
+                "text": "Scheduled Caste"
+              },
+              {
+                "value": "3 ",
+                "text": "Scheduled Tribe [OR]"
+              },
+              {
+                "value": "4 ",
+                "text": "Other Backward Class"
+              },
+              {
+                "value": "5 ",
+                "text": "Most Backward Class (DO NOT READ)"
+              },
+              {
+                "value": "96 ",
+                "text": "I do not/my religion does not recognize a caste system (DO NOT READ)"
+              },
+              {
+                "value": "97 ",
+                "text": "Not a member of any caste/category/class (DO NOT READ)"
+              },
+              {
+                "value": "98 ",
+                "text": "Don’t know (DO NOT READ)"
+              },
+              {
+                "value": "99 ",
+                "text": "Refused (DO NOT READ)"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "B06b",
+            "visibleIf": "{B06} = 1 ",
+            "title": "Are you …? क्या आप...?",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Brahmin"
+              },
+              {
+                "value": "2 ",
+                "text": "Other Forward Caste [OR]"
+              },
+              {
+                "value": "97 ",
+                "text": "Neither or just General Category"
+              },
+              {
+                "value": "98 ",
+                "text": "Don’t know (DO NOT READ)"
+              },
+              {
+                "value": "99 ",
+                "text": "Refused (DO NOT READ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Main_sections",
+        "title": "Political Preference",
+        "elements": [
+          {
+            "type": "expression",
+            "name": "Note_2",
+            "title": "Thank you. Now I will be asking you questions about news and politics."
+          },
+          {
+            "type": "radiogroup",
+            "name": "R01",
+            "title": "[SHOW CARD WITH PICTURES OF PARTY SYMBOLS] Regardless of which party you voted for in the last national election, which political party, if any, do you feel closest to?\nभले ही पिछले राष्ट्रीय चुनाव में आपने किसी भी पार्टी को वोट दिया हो, आप किस राजनीतिक दल, यदि कोई हो, के सबसे करीब महसूस करते हैं?",
+            "description": "[INTERVIEWER: DO NOT READ RESPONSE OPTIONS. RESPONDENT MAY VERBALLY\nOFFER A PARTY NAME OR USE THE SHOWCARD. MAKE SURE RESPONDENT ONLY\nSELECTS ONE PARTY.]",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Bharatiya Janata Party (BJP)"
+              },
+              {
+                "value": "2 ",
+                "text": "Congress Party / Indian National Congress (INC)"
+              },
+              {
+                "value": "3 ",
+                "text": "All India Anna Dravida Munnetra Kazhagam (AIADMK) in Puducherry/Tamil Nadu Kerala Congress (M) in Kerala"
+              },
+              {
+                "value": "4 ",
+                "text": "Trinamul Congress / All India Trinamul Congress (AITC/TMC)"
+              },
+              {
+                "value": "5 ",
+                "text": "Biju Janata Dal (BJD)"
+              },
+              {
+                "value": "6 ",
+                "text": "Samajwadi Party (SP) in Uttar Pradesh Telugu Desam Party (TDP) in Andhra Pradesh/Telangana Jammu & Kashmir National Panthers Party (JKNPP) in Jammu & Kashmir"
+              },
+              {
+                "value": "7 ",
+                "text": "Shiv Sena in Maharashtra Jharkhand Mukti Morcha in Jharkhand"
+              },
+              {
+                "value": "8 ",
+                "text": "BSP: Bahujan Samaj Party Asom Gana Parishad in Assam"
+              },
+              {
+                "value": "9 ",
+                "text": "Telangana Rashtra Samithi (TRS)"
+              },
+              {
+                "value": "10 ",
+                "text": "Dravida Munnetra Kazhagam (DMK)"
+              },
+              {
+                "value": "11 ",
+                "text": "Nationalist Congress Party (NCP)"
+              },
+              {
+                "value": "12 ",
+                "text": "Janata Dal (United) (JD(U))"
+              },
+              {
+                "value": "13 ",
+                "text": "Rashtriya Janata Dal (RJD)"
+              },
+              {
+                "value": "14 ",
+                "text": "Aam Aadmi Party (AAP)"
+              },
+              {
+                "value": "15 ",
+                "text": "Shiromani Akali Dal (SAD)"
+              },
+              {
+                "value": "16 ",
+                "text": "Yuvajana Sramika Rythu Congress Party (YSR Congress Party)"
+              },
+              {
+                "value": "17 ",
+                "text": "Communist Party of India (CPI)"
+              },
+              {
+                "value": "18 ",
+                "text": "Jammu and Kashmir Peoples Democratic Party (JKPDP)"
+              },
+              {
+                "value": "19 ",
+                "text": "CPI (M): Communist Party of India (Marxist)"
+              },
+              {
+                "value": "20 ",
+                "text": "League / Indian Union Muslim League (IUML)"
+              },
+              {
+                "value": "21 ",
+                "text": "Janata Dal (Secular) (JD (S))"
+              },
+              {
+                "value": "22 ",
+                "text": "All India United Democratic Front (AIUDF)"
+              },
+              {
+                "value": "23 ",
+                "text": "Sikkim Democratic Front (SDF)"
+              },
+              {
+                "value": "25 ",
+                "text": "Do not feel close to any party"
+              },
+              {
+                "value": "98 ",
+                "text": "Don’t know (DO NOT READ)"
+              },
+              {
+                "value": "99 ",
+                "text": "Refused (DO NOT READ)"
+              }
+            ],
+            "showOtherItem": true
+          },
+          {
+            "type": "radiogroup",
+            "name": "QPTY2a",
+            "title": "Please tell me if you have a very favorable, somewhat favorable, somewhat unfavorable or very unfavorable opinion of \nकृपया मुझे बताएं कि क्या आपकी BJP बारे में बहुत अनुकूल, कुछ हद तक अनुकूल, कुछ हद तक प्रतिकूल या बहुत प्रतिकूल राय है?",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Very favorable बहुत अनुकूल"
+              },
+              {
+                "value": "2 ",
+                "text": "Somewhat favorable कुछ हद तक अनुकूल"
+              },
+              {
+                "value": "3 ",
+                "text": "Somewhat unfavorable कुछ हद तक प्रतिकूल"
+              },
+              {
+                "value": "4 ",
+                "text": "Very unfavorable बहुत प्रतिकूल"
+              },
+              {
+                "value": "98 ",
+                "text": "Don’t know (DO NOT READ)"
+              },
+              {
+                "value": "99 ",
+                "text": "Refused (DO NOT READ)"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "QPTY2b",
+            "title": "Please tell me if you have a very favorable, somewhat favorable, somewhat unfavorable or very unfavorable opinion of Congress?\nकृपया मुझे बताएं कि क्या आपकी Congress बारे में बहुत अनुकूल, कुछ हद तक अनुकूल, कुछ हद तक प्रतिकूल या बहुत प्रतिकूल राय है?",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Very favorable बहुत अनुकूल"
+              },
+              {
+                "value": "2 ",
+                "text": "Somewhat favorable कुछ हद तक अनुकूल"
+              },
+              {
+                "value": "3 ",
+                "text": "Somewhat unfavorable कुछ हद तक प्रतिकूल"
+              },
+              {
+                "value": "4 ",
+                "text": "Very unfavorable बहुत प्रतिकूल"
+              },
+              {
+                "value": "98 ",
+                "text": "Don’t know (DO NOT READ)"
+              },
+              {
+                "value": "99 ",
+                "text": "Refused (DO NOT READ)"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "QPTY4",
+            "title": "How favorably do you feel about Prime Minister Narendra Modi? आप प्रधानमंत्री नरेंद्र मोदी के बारे में कितना अनुकूल महसूस करते हैं?",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Very favorable बहुत अनुकूल"
+              },
+              {
+                "value": "2 ",
+                "text": "Somewhat favorable कुछ हद तक अनुकूल"
+              },
+              {
+                "value": "3 ",
+                "text": "Somewhat unfavorable कुछ हद तक प्रतिकूल"
+              },
+              {
+                "value": "4 ",
+                "text": "Very unfavorable बहुत प्रतिकूल"
+              },
+              {
+                "value": "98 ",
+                "text": "Don’t know (DO NOT READ)"
+              },
+              {
+                "value": "99 ",
+                "text": "Refused (DO NOT READ)"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Attitude",
+        "title": "Attitude",
+        "elements": [
+          {
+            "type": "radiogroup",
+            "name": "P_1",
+            "title": "Which of the three sentences do you agree with most? \nआप तीनों में से किस वाक्य से सबसे अधिक सहमत हैं?\n",
+            "description": "\n",
+            "choices": [
+              {
+                "value": "1",
+                "text": "Fertility rates declined for Hindus more than Muslims हिंदुओं के बच्चे देने का डर मुसलमानों से ज़्यादा काम हो गया है, पहले से?"
+              },
+              {
+                "value": "2",
+                "text": "Fertility rates declined at the same rate for both Hindus and Muslims हिंदुओं और मुसलमानों दोनों का बच्चे देने का डर काम हुआ है, पहले से?"
+              },
+              {
+                "value": "3",
+                "text": "Fertility rates declined for Muslims more than Hindus मुसलमानों के बच्चे देने का डर हिंदुओं हिंदुओं से ज़्यादा काम हो गया है, पहले से?"
+              }
+            ],
+            "choicesOrder": "random"
+          },
+          {
+            "type": "radiogroup",
+            "name": "P_2",
+            "title": "Which of the four statements do you agree with the most? \nआप इन चार कथनों में से किस कथन से सबसे अधिक सहमत हैं? \n",
+            "choices": [
+              {
+                "value": "1",
+                "text": "All if the Love Jihad stories are fake (1) यदि लव जिहाद की सभी कहानियाँ फर्जी हैं (1)"
+              },
+              {
+                "value": "2",
+                "text": "Most of the Love Jihad stories are fake, some are true (2) लव जिहाद की अधिकांश कहानियाँ झूठी हैं, कुछ सच्ची हैं (2)"
+              },
+              {
+                "value": "3",
+                "text": "Most of the Love Jihad stories are true, some are fake (3) लव जिहाद की ज्यादातर कहानियाँ सच्ची हैं, कुछ झूठी हैं (3)"
+              },
+              {
+                "value": "4",
+                "text": "All of the Love Jihad stories are true (4) लव जिहाद की सभी कहानियाँ सच्ची हैं (4)"
+              }
+            ],
+            "choicesOrder": "random"
+          },
+          {
+            "type": "radiogroup",
+            "name": "P_1P",
+            "title": "Do you think laws are required to maintain balance in populations within communities (Hindus and Muslims)?\nक्या आपको लगता है कि समुदायों (हिंदू और मुस्लिम) के भीतर आबादी में संतुलन बनाए रखने के लिए कानूनों की आवश्यकता है?\n",
+            "choices": [
+              {
+                "value": "1",
+                "text": "Yes, we need to have laws to maintain a balance in communities"
+              },
+              {
+                "value": "0",
+                "text": "No, its not required"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "P_2P",
+            "title": "Do you think laws are required to prevent Love Jihad? क्या आपको लगता है कि लव जिहाद को रोकने के लिए कानूनों की आवश्यकता है?",
+            "choices": [
+              {
+                "value": "1",
+                "text": "Yes"
+              },
+              {
+                "value": "0",
+                "text": "No"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "P_3",
+            "title": "How favorably do you feel about Muslims? आप मुसलमानों के प्रति कितना अनुकूल महसूस करते हैं?  ",
+            "choicesFromQuestion": "QPTY4",
+            "choices": [
+              "Item 1",
+              "Item 2",
+              "Item 3"
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "P_4",
+            "title": "How favorably do you feel about Sikhs? आप सिखों के प्रति कितना अनुकूल महसूस करते हैं?",
+            "choicesFromQuestion": "QPTY4",
+            "choices": [
+              "Item 1",
+              "Item 2",
+              "Item 3"
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "P_5",
+            "title": "How favorably do you feel about Hindus? आप हिंदुओं के बारे में कितना अनुकूल महसूस करते हैं?",
+            "choicesFromQuestion": "QPTY4",
+            "choices": [
+              "Item 1",
+              "Item 2",
+              "Item 3"
+            ]
+          },
+          {
+            "type": "matrix",
+            "name": "NW1",
+            "title": "How much do you trust news coming from: आप यहां से आने वाली खबरों पर कितना भरोसा करते हैं: ",
+            "columns": [
+              {
+                "value": "1",
+                "text": "Trust a lot बहुत भरोसा "
+              },
+              {
+                "value": "2",
+                "text": "Somewhat trust कुछ हद तक भरोसा"
+              },
+              {
+                "value": "3",
+                "text": "Trust a little थोड़ा भरोसा "
+              },
+              {
+                "value": "4",
+                "text": "Don’t trust भरोसा नहीं"
+              },
+              {
+                "value": "-98",
+                "text": "Don't know (DO NOT READ)"
+              },
+              {
+                "value": "-99",
+                "text": "Refused (DO NOT READ) "
+              }
+            ],
+            "rows": [
+              {
+                "value": "1",
+                "text": "A local journalist एक स्थानीय पत्रकार"
+              },
+              {
+                "value": "2",
+                "text": "A teacher एक अध्यापक"
+              },
+              {
+                "value": "3",
+                "text": "A governement official एक सरकारी अधिकारी"
+              },
+              {
+                "value": "4",
+                "text": "A national news website एक राष्ट्रीय समाचार वेबसाइट\t"
+              },
+              {
+                "value": "5",
+                "text": "A politician एक राजनीतिज्ञ"
+              },
+              {
+                "value": "6",
+                "text": "A news channel एक न्यूज़ चैनल"
+              }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "NW_1_oth",
+            "title": "Is there anyone else you trust for receiving news क्या कोई और है जिस पर आप समाचार प्राप्त करने के लिए भरोसा करते हैं"
+          }
+        ]
+      },
+      {
+        "name": "CRT",
+        "title": "CRT",
+        "elements": [
+          {
+            "type": "expression",
+            "name": "question1",
+            "title": "Thank you! Would you like to take a short 2 minute break? धन्यवाद! क्या आप 2 मिनट का छोटा ब्रेक लेना चाहेंगे?"
+          },
+          {
+            "type": "expression",
+            "name": "question2",
+            "title": "Lets begin again. I will ask you two gamified questions now as a refresher. Listen carefully and answer! चलिए फिर से शुरू करते हैं. मैं अब एक रेफरेशर के रूप में आपसे दो सरल प्रश्न पूछूंगा। ध्यान से सुनें और उत्तर दें!"
+          },
+          {
+            "type": "radiogroup",
+            "name": "CR1",
+            "title": "If you were running a race, and you passed the person in second place, what place would you be in now?” \"यदि आप दौड़ में भाग ले रहे थे, और आप दूसरे स्थान पर रहने वाले व्यक्ति से आगे निकल गए, तो अब आप किस स्थान पर होंगे?\"",
+            "choices": [
+              {
+                "value": "1",
+                "text": "First (DONOT READ THE OPTIONS)"
+              },
+              {
+                "value": "2",
+                "text": "Second (DONOT READ THE OPTIONS)"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "CR_2",
+            "title": "Komal’s father has 4 daughters but no sons—Tina, Mina, Rina. What is the fourth daughter’s name?” “कोमल के पिता की 4 बेटियाँ हैं लेकिन कोई बेटा नहीं है - टीना, मीना, रीना। चौथी बेटी का नाम क्या है?”",
+            "choices": [
+              {
+                "value": "1",
+                "text": "Komal (DONOT READ THE OPTIONS)"
+              },
+              {
+                "value": "2",
+                "text": "Tina (DONOT READ THE OPTIONS)"
+              },
+              {
+                "value": "3",
+                "text": "Mina (DONOT READ THE OPTIONS)"
+              },
+              {
+                "value": "4",
+                "text": "Rina (DONOT READ THE OPTIONS)"
+              },
+              {
+                "value": "5",
+                "text": "Other name with “ina” ending (DONOT READ THE OPTIONS)"
+              }
+            ],
+            "showOtherItem": true
+          }
+        ]
+      },
+      {
+        "name": "page1",
+        "elements": [
+          {
+            "type": "expression",
+            "name": "question3",
+            "title": "Thank you! We are almost done with phase 1. I have a few more questions about social media. धन्यवाद! हमने चरण 1 लगभग पूरा कर लिया है। मेरे पास सोशल मीडिया के बारे में कुछ और प्रश्न हैं।"
+          },
+          {
+            "type": "text",
+            "name": "Q18NC",
+            "title": "Which newspaper do you read the most for political news and information? (choose up to 2) "
+          },
+          {
+            "type": "radiogroup",
+            "name": "Q22",
+            "title": "How often do you view WhatsApp groups? आप WhatsApp ग्रुप कितनी बार देखते हैं?",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Several hours a day "
+              },
+              {
+                "value": "2 ",
+                "text": "A few times a day"
+              },
+              {
+                "value": "3 ",
+                "text": "Once a day"
+              },
+              {
+                "value": "4 ",
+                "text": "A few times a week"
+              },
+              {
+                "value": "5 ",
+                "text": "Once a week"
+              },
+              {
+                "value": "6 ",
+                "text": "Less frequently than once a week"
+              },
+              {
+                "value": "7 ",
+                "text": "Never"
+              },
+              {
+                "value": "-98 ",
+                "text": "Don't know (DO NOT READ)"
+              },
+              {
+                "value": "-99 ",
+                "text": "Refused (DO NOT READ) "
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "Q23",
+            "visibleIf": "{Q22} anyof [1 , 2 ]",
+            "title": "How many hours a day do you spend sending and receiving information on WhatsApp groups? आप WhatsApp ग्रुप पर जानकारी भेजने और प्राप्त करने में प्रतिदिन कितने घंटे खर्च करते हैं?\n",
+            "choices": [
+              {
+                "value": "1",
+                "text": "up to an hour"
+              },
+              {
+                "value": "2",
+                "text": "one to three hours"
+              },
+              {
+                "value": "3",
+                "text": "three to five hours"
+              },
+              {
+                "value": "4",
+                "text": "more than 5"
+              }
+            ]
+          },
+          {
+            "type": "matrix",
+            "name": "Q24",
+            "title": "I will tell you some reasons, you tell me how important they are for which you use whatsapp? माई अपको कुछ कारण बताऊंगा, आप बताइये वे कितने महत्वपूर्ण हैं जिनके लिए आप WhatsApp का उपयोग करते हैं?",
+            "columns": [
+              {
+                "value": "1",
+                "text": " very important"
+              },
+              {
+                "value": "2 ",
+                "text": "little important"
+              },
+              {
+                "value": "3 ",
+                "text": "Not important at all"
+              },
+              {
+                "value": "-98",
+                "text": "Don't know (DO NOT READ)"
+              },
+              {
+                "value": "-99",
+                "text": "Refused (DO NOT READ) "
+              }
+            ],
+            "rows": [
+              {
+                "value": "1",
+                "text": "Talking to friends and family"
+              },
+              {
+                "value": "2",
+                "text": "For news and information on politics"
+              },
+              {
+                "value": "3",
+                "text": "Jokes"
+              },
+              {
+                "value": "4",
+                "text": "Work-related"
+              },
+              {
+                "value": "5",
+                "text": "News and information on matters other than politics"
+              },
+              {
+                "value": "6",
+                "text": "Voice call / video call"
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "Q25",
+            "title": "How much do you forward news received on WhatsApp? आप  WhatsApp पर प्राप्त खबरों को कितना फॉरवर्ड करते हैं?",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Several stories a day एक दिन में कई कहानियाँ"
+              },
+              {
+                "value": "2 ",
+                "text": "A few times a day दिन में कुछ बार"
+              },
+              {
+                "value": "3 ",
+                "text": "Once a day दिन में एक बार"
+              },
+              {
+                "value": "4 ",
+                "text": "A few times a week सप्ताह में कुछ बार"
+              },
+              {
+                "value": "5 ",
+                "text": "Once a week सप्ताह में एक बार"
+              },
+              {
+                "value": "6 ",
+                "text": "Less frequently than once a week सप्ताह में एक बार से कम बार"
+              },
+              {
+                "value": "7 ",
+                "text": "Never कभी नहीं"
+              },
+              {
+                "value": "-98 ",
+                "text": "Don't know (DO NOT READ)"
+              },
+              {
+                "value": "-99 ",
+                "text": "Refused (DO NOT READ) "
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "Q26",
+            "title": "How much do you trust and believe the news coming on WhatsApp? WhatsApp पर आने वाली खबरों पर आप कितना विश्वास और भरोसा करते हैं? ",
+            "choices": [
+              {
+                "value": "1",
+                "text": " A great deal काफ़ी ज़ायदा"
+              },
+              {
+                "value": "2 ",
+                "text": "A moderate amount एक मध्यम मात्रा"
+              },
+              {
+                "value": "3 ",
+                "text": "Not much belief ज्यादा विश्वास नहीं"
+              },
+              {
+                "value": "4 ",
+                "text": "Not at all बिलकुल नहीं"
+              },
+              {
+                "value": "-98 ",
+                "text": "Don't know (DO NOT READ)"
+              },
+              {
+                "value": "-99 ",
+                "text": "Refused (DO NOT READ) "
+              }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "Q14",
+            "title": "For how long has internet access been available on the phone? फ़ोन पर इंटरनेट की सुविधा कितने समय से उपलब्ध है?",
+            "choices": [
+              {
+                "value": "1 ",
+                "text": "Less than a week एक सप्ताह से भी कम"
+              },
+              {
+                "value": "2 ",
+                "text": "About a month लगभग एक महीना"
+              },
+              {
+                "value": "3 ",
+                "text": "About 6 months लगभग 6 महीने"
+              },
+              {
+                "value": "4 ",
+                "text": "About 1 year लगभग 1 वर्ष"
+              },
+              {
+                "value": "5 ",
+                "text": "About 2 years लगभग 2 वर्ष"
+              },
+              {
+                "value": "6 ",
+                "text": "More than 2 years 2 वर्ष से अधिक"
+              },
+              {
+                "value": "-98 ",
+                "text": "Don't know (DO NOT READ)"
+              },
+              {
+                "value": "-99 ",
+                "text": "Refused (DO NOT READ) "
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "sendResultOnPageNext": true,
+    "showQuestionNumbers": "off",
+    "showProgressBar": "aboveheader",
+    "progressBarType": "requiredQuestions",
+    "firstPageIsStarted": true,
+    "questionsOnPageMode": "questionPerPage"
+  }
