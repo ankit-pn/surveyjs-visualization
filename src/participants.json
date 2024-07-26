@@ -1,0 +1,37 @@
+[
+  {
+      "name": "Ankit",
+      "time_slot": "10am",
+      "phone_number": "8809814750"
+  },
+  {
+      "name": "Shi",
+      "time_slot": "11am",
+      "phone_number": "8809816750"
+  },
+  {
+      "name": "Sneha",
+      "time_slot": "3pm",
+      "phone_number": "8809815754"
+  },
+  {
+      "name": "Arjun",
+      "time_slot": "4pm",
+      "phone_number": "8809814755"
+  },
+  {
+      "name": "Ritika",
+      "time_slot": "5pm",
+      "phone_number": "8809816756"
+  },
+  {
+      "name": "Nikhil",
+      "time_slot": "6pm",
+      "phone_number": "8809815757"
+  },
+  {
+      "name": "Divya",
+      "time_slot": "7pm",
+      "phone_number": "8809814758"
+  }
+]
