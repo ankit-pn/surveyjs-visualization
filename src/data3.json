@@ -1,0 +1,72 @@
+{
+    "title": "Post Analysis Survey",
+    "pages": [
+      {
+        "name": "page1",
+        "elements": [
+          {
+            "type": "radiogroup",
+            "name": "postType",
+            "title": "Is this post a new topic or a reaction to a prior topic?",
+            "isRequired": true,
+            "choices": [
+              { "value": "new", "text": "NEW TOPIC" },
+              { "value": "reaction", "text": "REACTION TO PRIOR TOPIC" }
+            ]
+          },
+          {
+            "type": "text",
+            "name": "priorPostReference",
+            "title": "If reaction, enter the prior post number or ID:",
+            "visibleIf": "{postType} = 'reaction'"
+          },
+          {
+            "type": "radiogroup",
+            "name": "contentType",
+            "title": "What type of content is this post?",
+            "isRequired": true,
+            "choices": [
+              { "value": "opinion", "text": "Opinion" },
+              { "value": "claim", "text": "Claim" },
+              { "value": "conative", "text": "Conative Content" },
+              { "value": "logistical", "text": "Logistical Content" },
+              { "value": "phatic", "text": "Phatic/Backchannel Content" }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "isHateful",
+            "title": "Is this opinion hateful?",
+            "visibleIf": "{contentType} = 'opinion'",
+            "choices": [
+              { "value": "yes", "text": "Yes" },
+              { "value": "no", "text": "No" }
+            ]
+          },
+          {
+            "type": "radiogroup",
+            "name": "claimType",
+            "title": "What type of claim is this?",
+            "visibleIf": "{contentType} = 'claim'",
+            "choices": [
+              { "value": "caw", "text": "Claim About the World (CAW)" },
+              { "value": "expressive", "text": "Expressive Claim" },
+              { "value": "both", "text": "Both CAW and Expressive" }
+            ]
+          },
+          {
+            "type": "comment",
+            "name": "claimDetails",
+            "title": "Please provide details about the claim:",
+            "visibleIf": "{contentType} = 'claim'"
+          },
+          {
+            "type": "comment",
+            "name": "conativeDetails",
+            "title": "Please describe the conative content:",
+            "visibleIf": "{contentType} = 'conative'"
+          }
+        ]
+      }
+    ]
+  }
