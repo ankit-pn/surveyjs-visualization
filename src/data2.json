@@ -1,193 +1,61 @@
 {
     "title": "Participant Survey",
     "pages": [
+        
         {
             "name": "enumeratorInfoPage",
             "elements": [
                 {
                     "type": "html",
                     "name": "enumeratorInstructions",
-                    "html": "<p><strong>ENUMERATOR: PLEASE DO NOT USE THE FACT-CHECK IN FRONT OF THE RESPONDENT UNLESS MENTIONED</strong></p>"
+                    "html": "<p><strong>ENUMERATOR: PLEASE DO NOT USE THE FACT-CHECK IN FRONT OF THE RESPONDENT UNLESS MENTIONED</strong></p><p><strong>ఎన్యూమరేటర్: దయచేసి ప్రస్తావిస్తే తప్ప ప్రతివాది ముందు వాస్తవ తనిఖీని ఉపయోగించవద్దు</strong></p>"
                 },
                 {
                     "type": "dropdown",
                     "name": "enumerator_name",
-                    "title": "Enumerator: please select your name",
+                    "title": "Enumerator: please select your name / ఎన్యుమరేటర్: దయచేసి మీ పేరును ఎంచుకోండి",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": 1,
-                            "text": "Person 1"
+                            "text": "Person 1 / వ్యక్తి 1"
                         },
                         {
                             "value": 2,
-                            "text": "Person 2"
+                            "text": "Person 2 / వ్యక్తి 2"
                         }
                     ],
                     "showOtherItem": true,
-                    "otherText": "Other (please specify)"
+                    "otherText": "Other (please specify) / ఇతర పేర్కొనండి"
                 },
                 {
                     "type": "dropdown",
                     "name": "interview_place_type",
-                    "title": "Enumerator: where are you interviewing this person",
+                    "title": "Enumerator: where are you interviewing this person / ఎన్యుమరేటర్: మీరు ఈ వ్యక్తిని ఎక్కడ ఇంటర్వ్యూ చేస్తున్నారు",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": 1,
-                            "text": "School"
+                            "text": "School / పాఠశాల"
                         },
                         {
                             "value": 2,
-                            "text": "Home"
+                            "text": "Home / ఇల్లు"
                         },
                         {
                             "value": 3,
-                            "text": "Community Space"
+                            "text": "Community Space / సంఘం స్థలం"
                         }
                     ],
                     "showOtherItem": true,
-                    "otherText": "Other (please specify)"
+                    "otherText": "Other (please specify) / ఇతర పేర్కొనండి"
                 },
                 {
                     "type": "text",
                     "name": "interview_place",
-                    "title": "Please enter the specific {interview_place_type} where you are interviewing this person",
+                    "title": "Please enter the specific {interview_place_type} where you are interviewing this person / దయచేసి మీరు ఈ వ్యక్తిని ఇంటర్వ్యూ చేస్తున్న నిర్దిష్ట {interview_place_type}ని నమోదు చేయండి",
                     "isRequired": true,
-                    "placeholder": "Enter specific location"
-                }
-            ]
-        },
-        {
-            "name": "page1",
-            "elements": [
-                {
-                    "type": "dropdown",
-                    "name": "interview_time",
-                    "title": "What was the time slot of the participant?",
-                    "isRequired": true,
-                    "choices": [
-                        "10am",
-                        "11am",
-                        "12pm",
-                        "2pm"
-                    ]
-                },
-                {
-                    "type": "dropdown",
-                    "name": "participant_id",
-                    "visibleIf": "{interview_time} notempty",
-                    "title": "Locate the participant at {interview_time} time slot.",
-                    "choices": [
-                        {
-                            "value": "item1",
-                            "text": "Loading..."
-                        }
-                    ]
-                },
-                {
-                    "type": "text",
-                    "name": "new_participant_name",
-                    "visibleIf": "{participant_id} == 'NA'",
-                    "title": "What is your full name? आपका पूरा नाम क्या है?"
-                },
-                {
-                    "type": "radiogroup",
-                    "name": "phone_number_check",
-                    "visibleIf": "{participant_id} notempty and {participant_id} != 'NA'",
-                    "title": "Is {phone_number} your phone number?",
-                    "choices": [
-                        "Yes",
-                        "No"
-                    ]
-                },
-                {
-                    "type": "radiogroup",
-                    "name": "whatsapp_use_check_pn",
-                    "visibleIf": "{phone_number_check} == 'Yes'",
-                    "title": {
-                        "en": "Do you use this phone number on WhatsApp?",
-                        "hi": "क्या आप WhatsApp पर इस फ़ोन नंबर का उपयोग करते हैं?"
-                    },
-                    "choices": [
-                        {
-                            "value": "yes",
-                            "text": {
-                                "en": "Yes",
-                                "hi": "हाँ"
-                            }
-                        },
-                        {
-                            "value": "no",
-                            "text": {
-                                "en": "No",
-                                "hi": "नहीं"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "radiogroup",
-                    "name": "age_check",
-                    "visibleIf": "{whatsapp_use_check_pn} == 'yes'",
-                    "title": {
-                        "en": "Are you over 18 years old?",
-                        "hi": "क्या आप WhatsApp पर इस फ़ोन नंबर का उपयोग करते हैं?"
-                    },
-                    "choices": [
-                        {
-                            "value": "yes",
-                            "text": {
-                                "en": "Yes",
-                                "hi": "हाँ"
-                            }
-                        },
-                        {
-                            "value": "no",
-                            "text": {
-                                "en": "No",
-                                "hi": "नहीं"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "type": "radiogroup",
-                    "visibleIf": "{participant_id} == 'NA'",
-                    "name": "participantFound",
-                    "title": "Enumerator: please try to locate the survey participant in the log sheet at {interview_time} time slot. Did you find them?",
-                    "choices": [
-                        "Yes",
-                        "No"
-                    ]
-                },
-                {
-                    "type": "radiogroup",
-                    "name": "phoneVerification",
-                    "visibleIf": "{participant_id} == 'NA' and {participantFound} = 'Yes'",
-                    "title": "Is {phone_number} your phone number (surveyor: find phone number in log sheet)? आपका फ़ोन नंबर है?",
-                    "choices": [
-                        "Yes",
-                        "No"
-                    ]
-                },
-                {
-                    "type": "html",
-                    "name": "discrepancyReport1",
-                    "visibleIf": "{participantFound} = 'No'",
-                    "html": "<p>Enumerator: Please report this discrepancy in scheduling to the RA</p>"
-                },
-                {
-                    "type": "html",
-                    "name": "discrepancyReport2",
-                    "visibleIf": "{whatsapp_use_check_pn} = 'no'",
-                    "html": "<p>This should not be the case since we have already contacted them via WA</p>"
-                },
-                {
-                    "type": "html",
-                    "name": "discrepancyReport2",
-                    "visibleIf": "{age_check} = 'no'",
-                    "html": "<p> Thank the participant and stop the survey and report this to the RA via whatsapp on +91-7259907691. </p>"
+                    "placeholder": "Enter specific location / నిర్దిష్ట స్థానాన్ని నమోదు చేయండి"
                 }
             ]
         },
