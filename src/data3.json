@@ -1,72 +1,67 @@
+
+
 {
-    "title": "Post Analysis Survey",
-    "pages": [
-      {
-        "name": "page1",
-        "elements": [
-          {
-            "type": "radiogroup",
-            "name": "postType",
-            "title": "Is this post a new topic or a reaction to a prior topic?",
-            "isRequired": true,
-            "choices": [
-              { "value": "new", "text": "NEW TOPIC" },
-              { "value": "reaction", "text": "REACTION TO PRIOR TOPIC" }
-            ]
-          },
-          {
-            "type": "text",
-            "name": "priorPostReference",
-            "title": "If reaction, enter the prior post number or ID:",
-            "visibleIf": "{postType} = 'reaction'"
-          },
-          {
-            "type": "radiogroup",
-            "name": "contentType",
-            "title": "What type of content is this post?",
-            "isRequired": true,
-            "choices": [
-              { "value": "opinion", "text": "Opinion" },
-              { "value": "claim", "text": "Claim" },
-              { "value": "conative", "text": "Conative Content" },
-              { "value": "logistical", "text": "Logistical Content" },
-              { "value": "phatic", "text": "Phatic/Backchannel Content" }
-            ]
-          },
-          {
-            "type": "radiogroup",
-            "name": "isHateful",
-            "title": "Is this opinion hateful?",
-            "visibleIf": "{contentType} = 'opinion'",
-            "choices": [
-              { "value": "yes", "text": "Yes" },
-              { "value": "no", "text": "No" }
-            ]
-          },
-          {
-            "type": "radiogroup",
-            "name": "claimType",
-            "title": "What type of claim is this?",
-            "visibleIf": "{contentType} = 'claim'",
-            "choices": [
-              { "value": "caw", "text": "Claim About the World (CAW)" },
-              { "value": "expressive", "text": "Expressive Claim" },
-              { "value": "both", "text": "Both CAW and Expressive" }
-            ]
-          },
-          {
-            "type": "comment",
-            "name": "claimDetails",
-            "title": "Please provide details about the claim:",
-            "visibleIf": "{contentType} = 'claim'"
-          },
-          {
-            "type": "comment",
-            "name": "conativeDetails",
-            "title": "Please describe the conative content:",
-            "visibleIf": "{contentType} = 'conative'"
-          }
-        ]
-      }
-    ]
-  }
+  "html": "<p><strong>English:</strong></p><p></p> Hello, my name is ______. I am working with researchers from Rutgers University in the USA. You have shown interest in a study on social media. I would like to tell you details about the
+study and ask whether you agree to participate.
+We are doing this study to learn about information on social media and about how we can
+create awareness on this topic. We will reach this goal in three steps.
+In the first step, we will ask you questions about yourself, such as: your education, income,
+attitudes on social media information. In the second step, we will ask you to donate your data
+from your WhatsApp groups. You can share with us public, semi-public and semi-private
+groups. This helps us learn about the information on social media. The first two steps will take
+thirty to forty-five minutes of your time today. In the third step, you will receive messages on
+WhatsApp to make you more aware about the information you have received on WhatsApp. The
+third step will happen during the next two weeks.
+Please know that any data you share will be anonymised. By anonymised we mean that it will
+be confidential and encrypted. Your identity will be kept confidential, no one will be able to link
+the answers you provide to you as an individual nor to anyone else. Moreover, the data will not
+be shared with anyone beyond the research team, which includes a research assistant, PhD
+student and Professor. Again, we will use your responses to learn about information on social
+
+media and for creating awareness about it. We will publish the general findings of the study and
+in the process, we will not publish any information that can possibly identify you.
+For your time and interest in our study we will offer you 500 rupees as a thank you at the end of
+all the three stages. Beyond this, there is no benefit or risk for you from participating in this
+survey. Though your responses are invaluable in understanding social media information on
+WhatsApp in India.
+This is an independent academic study, and we are not linked to any platform, political party or
+government agency. Participation in this study is completely voluntary. You are free to decline to
+participate or to end participation at any time for any reason. Irrespective of you completing the
+survey, refusing to answer some questions or leaving it in between we will still be grateful for
+your time. <hr><p><strong>Telgu</strong></p> హలో, నా పేరు ______. నేను USAలోని రట్జర్స్ విశ్వవిద్యాలయం నుండి
+పరిశోధకులతో కలిసి పని చేస్తున్నాను. మీరు సోషల్ మీడియాలో అధ్యయనంపై
+ఆసక్తిని కనబరిచారు. నేను మీకు అధ్యయనం గురించి వివరాలను చెప్పాలనుకుంటున్నాను
+మరియు మీరు పాల్గొనడానికి అంగీకరిస్తున్నారా అని అడగాలనుకుంటున్నాను.
+మేము సోషల్ మీడియాలోని సమాచారం గురించి మరియు ఈ అంశంపై అవగాహన కల్పించడం
+గురించి తెలుసుకోవడానికి ఈ అధ్యయనం చేస్తున్నాము. మూడు దశల్లో ఈ
+లక్ష్యాన్ని చేరుకుంటాం.
+మొదటి దశలో, మేము మీ గురించి మీ గురించి ప్రశ్నలు అడుగుతాము, అవి: మీ విద్య,
+ఆదాయం, సోషల్ మీడియా సమాచారంపై వైఖరులు. రెండవ దశలో, మీ WhatsApp సమూహాల
+నుండి మీ డేటాను విరాళంగా ఇవ్వమని మేము మిమ్మల్ని అడుగుతాము. మీరు పబ్లిక్,
+సెమీ పబ్లిక్ మరియు సెమీ-ప్రైవేట్ గ్రూపులను మాతో పంచుకోవచ్చు. ఇది సోషల్
+మీడియాలోని సమాచారం గురించి తెలుసుకోవడానికి మాకు సహాయపడుతుంది. మొదటి రెండు
+దశలు పడుతుంది ఈ రోజు మీ సమయం ముప్పై నుండి నలభై ఐదు నిమిషాలు. మూడవ దశలో, మీరు
+WhatsAppలో స్వీకరించిన సమాచారం గురించి మీకు మరింత అవగాహన కల్పించడానికి
+WhatsAppలో సందేశాలు అందుకుంటారు. మరో రెండు వారాల్లో మూడో దశ జరగనుంది.
+దయచేసి మీరు భాగస్వామ్యం చేసే ఏదైనా డేటా అజ్ఞాతంగా ఉంటుందని తెలుసుకోండి.
+అనామకం అంటే అది గోప్యంగా మరియు గుప్తీకరించబడి ఉంటుందని మేము అర్థం. మీ
+గుర్తింపు గోప్యంగా ఉంచబడుతుంది, మీరు వ్యక్తిగతంగా లేదా మరెవరికీ మీరు
+అందించే సమాధానాలను ఎవరూ లింక్ చేయలేరు. అంతేకాకుండా, రీసెర్చ్ అసిస్టెంట్,
+పీహెచ్‌డీ విద్యార్థి మరియు ప్రొఫెసర్‌తో కూడిన పరిశోధన బృందానికి మించి డేటా
+ఎవరితోనూ భాగస్వామ్యం చేయబడదు. మళ్ళీ, మేము సోషల్ మీడియాలో సమాచారం
+గురించి తెలుసుకోవడానికి మరియు దాని గురించి అవగాహన కల్పించడానికి మీ
+ప్రతిస్పందనలను ఉపయోగిస్తాము. మేము అధ్యయనం యొక్క సాధారణ ఫలితాలను
+ప్రచురిస్తాము మరియు ప్రక్రియలో, మిమ్మల్ని గుర్తించగల ఏ సమాచారాన్ని మేము
+ప్రచురించము.
+మా అధ్యయనంలో మీ సమయం మరియు ఆసక్తి కోసం మేము మూడు దశల ముగింపులో మీకు
+ధన్యవాదాలుగా 500 రూపాయలను అందిస్తాము. దీనికి మించి, ఈ సర్వేలో పాల్గొనడం
+
+వల్ల మీకు ఎలాంటి ప్రయోజనం లేదా ప్రమాదం లేదు. భారతదేశంలో WhatsAppలో
+సోషల్ మీడియా సమాచారాన్ని అర్థం చేసుకోవడంలో మీ స్పందనలు అమూల్యమైనవి.
+ఇది స్వతంత్ర విద్యాపరమైన అధ్యయనం మరియు మేము ఏ ప్లాట్‌ఫారమ్, రాజకీయ
+పార్టీ లేదా ప్రభుత్వ ఏజెన్సీకి లింక్ చేయబడలేదు. ఈ అధ్యయనంలో పాల్గొనడం
+పూర్తిగా స్వచ్ఛందమైనది. మీరు ఎప్పుడైనా ఏ కారణం చేతనైనా పాల్గొనడానికి
+నిరాకరించవచ్చు లేదా పాల్గొనడాన్ని ముగించవచ్చు. మీరు సర్వేను పూర్తి చేసినా,
+కొన్ని ప్రశ్నలకు సమాధానమివ్వడానికి నిరాకరించినా లేదా మధ్యలో వదిలేసినా మీ
+సమయాన్ని బట్టి మేము కృతజ్ఞతతో ఉంటాము. <p></p><!-- Rest of the Hindi consent information -->" 
+}

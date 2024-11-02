@@ -60,17 +60,157 @@
             ]
         },
         {
+            "name": "page1",
+            "elements": [
+                {
+                    "type": "dropdown",
+                    "name": "interview_time",
+                    "title": "What was the time slot of the participant? / ఎన్యుమరేటర్: పాల్గొనేవారి సమయ స్లాట్ ఎంత?",
+                    "isRequired": true,
+
+                        "choices": [
+                          "09:00",
+                          "10:00",
+                          "11:00",
+                          "12:00",
+                          "13:00",
+                          "14:00",
+                          "15:00",
+                          "16:00",
+                          "18:00"
+                        ]
+                      
+                },
+                {
+                    "type": "dropdown",
+                    "name": "participant_id",
+                    "visibleIf": "{interview_time} notempty",
+                    "title": "Locate the participant at {interview_time} time slot. / ఎన్యుమరేటర్: ${z04} టైమ్ స్లాట్‌లో పాల్గొనేవారిని గుర్తించండి.",
+                    "choices": [
+                        {
+                            "value": "item1",
+                            "text": "Loading..."
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "name": "new_participant_name",
+                    "visibleIf": "{participant_id} == 'NA'",
+                    "title": "What is your full name? / మీ పూర్తి పేరు ఏమిటి?"
+                },
+                {
+                    "type": "radiogroup",
+                    "name": "phone_number_check",
+                    "visibleIf": "{participant_id} notempty and {participant_id} != 'NA'",
+                    "title": "Is {phone_number} your phone number? / {phone_number} మీ ఫోన్ నంబర్? అవును/కాదు",
+                    "choices": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "type": "radiogroup",
+                    "name": "whatsapp_use_check_pn",
+                    "visibleIf": "{phone_number_check} == 'Yes'",
+                    "title": {
+                        "en": "Do you use this phone number on WhatsApp? / మీరు whatsappలో ఈ ఫోన్ నంబర్‌ని ఉపయోగిస్తున్నారా? అవును/కాదు",
+                        "hi": "మీరు whatsappలో ఈ ఫోన్ నంబర్‌ని ఉపయోగిస్తున్నారా? అవును/కాదు"
+                    },
+                    "choices": [
+                        {
+                            "value": "yes",
+                            "text": {
+                                "en": "Yes",
+                                "hi": "हाँ"
+                            }
+                        },
+                        {
+                            "value": "no",
+                            "text": {
+                                "en": "No",
+                                "hi": "नहीं"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "radiogroup",
+                    "name": "age_check",
+                    "visibleIf": "{whatsapp_use_check_pn} == 'yes'",
+                    "title": {
+                        "en": "Are you over 18 years old? / మీ వయస్సు 18 సంవత్సరాలు దాటిందా? అవును/కాదు",
+                        "hi": "क्या आप WhatsApp पर इस फ़ोन नंबर का उपयोग करते हैं?"
+                    },
+                    "choices": [
+                        {
+                            "value": "yes",
+                            "text": {
+                                "en": "Yes",
+                                "hi": "हाँ"
+                            }
+                        },
+                        {
+                            "value": "no",
+                            "text": {
+                                "en": "No",
+                                "hi": "नहीं"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "radiogroup",
+                    "visibleIf": "{participant_id} == 'NA'",
+                    "name": "participantFound",
+                    "title": "Enumerator: please try to locate the survey participant in the log sheet at {interview_time} time slot. Did you find them? / ఎన్యుమరేటర్: దయచేసి {interview_time} టైమ్ స్లాట్‌లో లాగ్ షీట్‌లో సర్వేలో పాల్గొనేవారిని గుర్తించడానికి ప్రయత్నించండి. మీరు వాటిని కనుగొన్నారా? అవును/కాదు",
+                    "choices": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "type": "radiogroup",
+                    "name": "phoneVerification",
+                    "visibleIf": "{participant_id} == 'NA' and {participantFound} = 'Yes'",
+                    "title": "Is {phone_number} your phone number (surveyor: find phone number in log sheet)? / {phone_number} మీ ఫోన్ నంబర్ (సర్వేయర్: లాగ్ షీట్‌లో ఫోన్ నంబర్‌ని కనుగొనండి)? అవును/కాదు",
+                    "choices": [
+                        "Yes",
+                        "No"
+                    ]
+                },
+                {
+                    "type": "html",
+                    "name": "discrepancyReport1",
+                    "visibleIf": "{participantFound} = 'No'",
+                    "html": "<p>Enumerator: Please report this discrepancy in scheduling to the RA / ఎన్యూమరేటర్: దయచేసి షెడ్యూల్ చేయడంలో ఈ వయత్యాసాన్ని RAకి నివేదించండి </p>"
+                },
+                {
+                    "type": "html",
+                    "name": "discrepancyReport2",
+                    "visibleIf": "{whatsapp_use_check_pn} = 'no'",
+                    "html": "<p>This should not be the case since we have already contacted them via WA / మేము ఇప్పటికే WA ద్వారా వారిని సంప్రదించినందున ఇది అలా ఉండకూడదు</p>"
+                },
+                {
+                    "type": "html",
+                    "name": "discrepancyReport2",
+                    "visibleIf": "{age_check} = 'no'",
+                    "html": "<p> Thank the participant and stop the survey and report this to the RA via whatsapp on +91-7259907691. / పాల్గొనేవారికి ధన్యవాదాలు మరియు సర్వేను ఆపివేసి, +91-7259907691లో whatsapp ద్వారా RAకి నివేదించండి.</p>"
+                }
+            ]
+        },
+        {
             "name": "personalInfo",
             "elements": [
                 {
                     "type": "text",
                     "name": "participant_first_name",
                     "title": {
-                        "en": "What is your first name? Do you have a middle name?",
+                        "en": "What is your first name? Do you have a middle name? / మీ మొదటి పేరు ఏమిటి? మీకు మధ్య పేరు ఉందా?",
                         "hi": "आपका पहला नाम क्या है? क्या आपका कोई मध्य नाम भी है?"
                     },
                     "description": {
-                        "en": "Enumerator: Please include first and middle names. Enter -77 if they refuse to answer",
+                        "en": "Enumerator: Please include first and middle names. Enter -77 if they refuse to answer / ఎన్యూమరేటర్: దయచేసి మొదటి మరియు మధ్య పేర్లను చేర్చండి. వారు సమాధానం ఇవ్వడానికి నిరాకరిస్తే -77ని నమోదు చేయండి",
                         "hi": "गणक: कृपया पहला और मध्य नाम शामिल करें। यदि वे उत्तर देने से इनकार करते हैं तो -77 दर्ज करें"
                     },
                     "isRequired": true,
@@ -87,7 +227,7 @@
                     "name": "participant_last_name",
                     "title": {
                         "en": "What is your surname?",
-                        "hi": "आपका उपनाम क्या है?"
+                        "hi": "మీ ఇంటిపేరు ఏమిటి? వారు సమాధానం ఇవ్వడానికి నిరాకరిస్తే -77ని నమోదు చేయండి."
                     },
                     "description": {
                         "en": "Enter -77 if they refuse to answer.",
@@ -110,29 +250,29 @@
                 {
                     "type": "html",
                     "name": "consentInfo",
-                    "html": "<p><strong>English:</strong></p><p>Hello, my name is ______. I am working with researchers from Rutgers University in the USA. You have shown interest in a study on social media. I would like to tell you details about the study and ask whether you agree to participate.</p><!-- Rest of the consent information --><hr><p><strong>हिंदी:</strong></p><p>नमस्ते। मेरा नाम ______ है । मैं अमेरिका में रटगर्स युनिवर्सिटीके प्रोफ़ेसर और रिसर्चेर  के साथ काम कर रहा हूं। आपने सोशल मीडिया पर एक अध्ययन/पाठ में रुचि दिखाई है। मैं आपको अध्ययन/ पाठ के बारे में बताना चाहता हूं और पूछना चाहता हूं कि क्या आप भाग लेने के लिए सहमत हैं।</p><!-- Rest of the Hindi consent information -->"
-                },
+                    "html": "<p><strong>English:</strong></p><p>Hello, my name is ______. I am working with researchers from Rutgers University in the USA. You have shown interest in a study on social media. I would like to tell you details about the study and ask whether you agree to participate. We are doing this study to learn about information on social media and about how we can create awareness on this topic. We will reach this goal in three steps. In the first step, we will ask you questions about yourself, such as: your education, income, attitudes on social media information. In the second step, we will ask you to donate your data from your WhatsApp groups. You can share with us public, semi-public and semi-private groups. This helps us learn about the information on social media. The first two steps will take thirty to forty-five minutes of your time today. In the third step, you will receive messages on WhatsApp to make you more aware about the information you have received on WhatsApp. The third step will happen during the next two weeks. Please know that any data you share will be anonymised. By anonymised we mean that it will be confidential and encrypted. Your identity will be kept confidential, no one will be able to link the answers you provide to you as an individual nor to anyone else. Moreover, the data will not be shared with anyone beyond the research team, which includes a research assistant, PhD student and Professor. Again, we will use your responses to learn about information on social media and for creating awareness about it. We will publish the general findings of the study and in the process, we will not publish any information that can possibly identify you. For your time and interest in our study we will offer you 500 rupees as a thank you at the end of all the three stages. Beyond this, there is no benefit or risk for you from participating in this survey. Though your responses are invaluable in understanding social media information on WhatsApp in India. This is an independent academic study, and we are not linked to any platform, political party or government agency. Participation in this study is completely voluntary. You are free to decline to participate or to end participation at any time for any reason. Irrespective of you completing the survey, refusing to answer some questions or leaving it in between we will still be grateful for your time.</p><hr><p><strong>Telugu:</strong></p><p>హలో, నా పేరు ______. నేను USAలోని రట్జర్స్ విశ్వవిద్యాలయం నుండి పరిశోధకులతో కలిసి పని చేస్తున్నాను. మీరు సోషల్ మీడియాలో అధ్యయనంపై ఆసక్తిని కనబరిచారు. నేను మీకు అధ్యయనం గురించి వివరాలను చెప్పాలనుకుంటున్నాను మరియు మీరు పాల్గొనడానికి అంగీకరిస్తున్నారా అని అడగాలనుకుంటున్నాను. మేము సోషల్ మీడియాలోని సమాచారం గురించి మరియు ఈ అంశంపై అవగాహన కల్పించడం గురించి తెలుసుకోవడానికి ఈ అధ్యయనం చేస్తున్నాము. మూడు దశల్లో ఈ లక్ష్యాన్ని చేరుకుంటాం. మొదటి దశలో, మేము మీ గురించి మీ గురించి ప్రశ్నలు అడుగుతాము, అవి: మీ విద్య, ఆదాయం, సోషల్ మీడియా సమాచారంపై వైఖరులు. రెండవ దశలో, మీ WhatsApp సమూహాల నుండి మీ డేటాను విరాళంగా ఇవ్వమని మేము మిమ్మల్ని అడుగుతాము. మీరు పబ్లిక్, సెమీ పబ్లిక్ మరియు సెమీ-ప్రైవేట్ గ్రూపులను మాతో పంచుకోవచ్చు. ఇది సోషల్ మీడియాలోని సమాచారం గురించి తెలుసుకోవడానికి మాకు సహాయపడుతుంది. మొదటి రెండు దశలు పడుతుంది ఈ రోజు మీ సమయం ముప్పై నుండి నలభై ఐదు నిమిషాలు. మూడవ దశలో, మీరు WhatsAppలో స్వీకరించిన సమాచారం గురించి మీకు మరింత అవగాహన కల్పించడానికి WhatsAppలో సందేశాలు అందుకుంటారు. మరో రెండు వారాల్లో మూడో దశ జరగనుంది. దయచేసి మీరు భాగస్వామ్యం చేసే ఏదైనా డేటా అజ్ఞాతంగా ఉంటుందని తెలుసుకోండి. అనామకం అంటే అది గోప్యంగా మరియు గుప్తీకరించబడి ఉంటుందని మేము అర్థం. మీ గుర్తింపు గోప్యంగా ఉంచబడుతుంది, మీరు వ్యక్తిగతంగా లేదా మరెవరికీ మీరు అందించే సమాధానాలను ఎవరూ లింక్ చేయలేరు. అంతేకాకుండా, రీసెర్చ్ అసిస్టెంట్, పీహెచ్‌డీ విద్యార్థి మరియు ప్రొఫెసర్‌తో కూడిన పరిశోధన బృందానికి మించి డేటా ఎవరిలోనూ భాగస్వామ్యం చేయబడదు. మళ్ళీ, మేము సోషల్ మీడియాలో సమాచారం గురించి తెలుసుకోవడానికి మరియు దాని గురించి అవగాహన కల్పించడానికి మీ ప్రతిస్పందనలను ఉపయోగిస్తాము. మేము అధ్యయనం యొక్క సాధారణ ఫలితాలను ప్రచురిస్తాము మరియు ప్రక్రియలో, మిమ్మల్ని గుర్తించగల ఏ సమాచారాన్ని మేము ప్రచురించము. మా అధ్యయనంలో మీ సమయం మరియు ఆసక్తి కోసం మేము మూడు దశల ముగింపులో మీకు ధన్యవాదాలుగా 500 రూపాయలను అందిస్తాము. దీనికి మించి, ఈ సర్వేలో పాల్గొనడం వల్ల మీకు ఎలాంటి ప్రయోజనం లేదా ప్రమాదం లేదు. భారతదేశంలో WhatsAppలో సోషల్ మీడియా సమాచారాన్ని అర్థం చేసుకోవడంలో మీ స్పందనలు అమూల్యమైనవి. ఇది స్వతంత్ర విద్యాపరమైన అధ్యయనం మరియు మేము ఏ ప్లాట్‌ఫారమ్, రాజకీయ పార్టీ లేదా ప్రభుత్వ ఏజెన్సీకి లింక్ చేయబడలేదు. ఈ అధ్యయనంలో పాల్గొనడం పూర్తిగా స్వచ్ఛందమైనది. మీరు ఎప్పుడైనా ఏ కారణం చేతనైనా పాల్గొనడానికి నిరాకరించవచ్చు లేదా పాల్గొనడాన్ని ముగించవచ్చు. మీరు సర్వేను పూర్తి చేసినా, కొన్ని ప్రశ్నలకు సమాధానమివ్వడానికి నిరాకరించినా లేదా మధ్యలో వదిలేసినా మీ సమయాన్ని బట్టి మేము కృతజ్ఞతతో ఉంటాము.</p>"
+                },                
                 {
                     "type": "html",
                     "name": "documentInstruction",
-                    "html": "<p><strong>English:</strong> Please have a look at this document explaining what I have said. [Enumerator: please hand the participant the document and allow them some time to look at it.]</p><p><strong>हिंदी:</strong> करया इस डॉक्यूमेंट को धयान से देख ले</p>"
+                    "html": "<p><strong>English:</strong> Please have a look at this document explaining what I have said. [Enumerator: please hand the participant the document and allow them some time to look at it.]</p><p><strong>Telgu: </strong>నేను ఏమి చెప్పానో వివరించే ఈ పత్రాన్ని దయచేసి చూడండి. [గణనకర్త: దయచేసి పాల్గొనేవారికి పత్రాన్ని చూపించండి]</p>"
                 },
                 {
                     "type": "comment",
                     "name": "participantQuestions",
-                    "title": "Do you have any questions for me? / क्या आपके पास मेरे लिए कोई सवाल है?",
-                    "description": "Note: Enumerator, please note the participant's questions verbatim in the text field. To answer the question please stick to the exact wording used in the consent and handout."
+                    "title": "Do you have any questions for me? / నా కోసం మీకు ఏవైనా ప్రశ్నలు ఉన్నాయా?",
+                    "description": "Note: Enumerator, please note the participant's questions verbatim in the text field. To answer the question please stick to the exact wording used in the consent and handout. / గమనిక: ఎన్యుమరేటర్, దయచేసి టెక్స్ట్ ఫీల్డ్‌లో పాల్గొనేవారి పరశ్నలను యథాతథంగా గమనించండి. ప్రశ్నకు సమాధానం ఇవ్వడానికి, దయచేసి సమ్మతి మరియు కరపత్రంలో ఉపయోగించిన ఖచ్చితమైన పదాలకు కట్టుబడి ఉండండి"
                 },
                 {
                     "type": "comment",
                     "name": "enumeratorNotes",
-                    "title": "Enumerator: Were there any explanations lacking in the consent or handout?",
+                    "title": "Enumerator: Were there any explanations lacking in the consent or handout? / ఎన్యుమరేటర్: సమ్మతి లేదా కరపత్రంలో ఏవైనా వివరణలు లేవా?",
                     "visibleIf": "{participantQuestions} notempty"
                 },
                 {
                     "type": "radiogroup",
                     "name": "participationConsent",
-                    "title": "The active cooperation of many participants is necessary to make this study successful. Would you agree to participate in our study? / इस स्टडीको सफल बनाने के लिए आपका चुशी से सहयोग जरूरी है। क्या आप हमारे स्टडीमें भाग लेना चाएंगे ?",
+                    "title": "The active cooperation of many participants is necessary to make this study successful. Would you agree to participate in our study? / ఈ అధ్యయనం విజయవంతం కావడానికి చాలా మంది పాల్గొనేవారి క రియాశీల సహకారం అవసరం. మీరు మా అధ్యయనంలో పాల్గొనడానికి అంగీకరిస్తారా?",
                     "isRequired": true,
                     "choices": [
                         {
@@ -149,7 +289,7 @@
                     "type": "html",
                     "name": "consentDocument",
                     "visibleIf": "{participationConsent} = 'yes'",
-                    "html": "<p>Consent Document: I understand the project's goal, its objectives, the anonymization strategy, and my rights.</p>"
+                    "html": "<p>Consent Document: I understand the project's goal, its objectives, the anonymization strategy, and my rights. / సమ్మత పత్రం: నాకు ఈ ప్రాజెక్టు యొక్క లక్ష్యం, దాని ఉద్దేశాలు, గోప్యతా వ్యూహం మరియు నా హక్కుల గురించి స్పష్టంగా అర్థం చేసుకున్నాను.</p>"
                 }
             ]
         },
@@ -160,7 +300,7 @@
                     "type": "text",
                     "name": "participant_age",
                     "title": {
-                        "default": "How old are you?",
+                        "default": "How old are you? / మీ వయస్సు ఎంత?",
                         "hi": "आपकी उम्र कितनी है?"
                     },
                     "inputType": "number",
@@ -169,20 +309,20 @@
                 {
                     "type": "radiogroup",
                     "name": "participant_gender",
-                    "title": "Enumerator: what is the participant's gender?",
+                    "title": "Enumerator: what is the participant's gender? / ఎన్యూమరేటర్: పాల్గొనేవారి లింగం ఏమిటి?",
                     "isRequired": true,
                     "choices": [
                         {
-                            "value": "Male",
+                            "value": "Male / పురుషుడు",
                             "text": "Male"
                         },
                         {
-                            "value": "Female",
+                            "value": "Female / స్ త్ రీ",
                             "text": "Female"
                         },
                         {
                             "value": "Other",
-                            "text": "Other"
+                            "text": "Other / ఇతర"
                         }
                     ]
                 },
@@ -190,63 +330,63 @@
                     "type": "dropdown",
                     "name": "participant_education",
                     "title": {
-                        "default": "What is the highest level of school you have completed or the highest degree received?",
-                        "hi": "आपने किस उच्चतम स्तर का स्कूल पूरा किया है या उच्चतम डिग्री प्राप्त की है?"
+                        "default": "What is the highest level of school you have completed or the highest degree received? / మీరు పూర్తి చేసిన పాఠశాలలో అత్యున్నత స్థాయి లేదా అందుకున్న అత్యధిక డిగ్రీ ఏమిటి?",
+                        "hi": "మీరు పూర్తి చేసిన పాఠశాలలో అత్యున్నత స్థాయి లేదా అందుకున్న అత్యధిక డిగ్రీ ఏమిటి?"
                     },
-                    "description": "ENUMERATOR: DO NOT READ RESPONSE OPTIONS. IF THE RESPONDENT INDICATES 'STILL IN SCHOOL' OR STATES THEY HAVE STARTED BUT NOT COMPLETED A LEVEL OF EDUCATION, ASK: 'What is the HIGHEST level of education COMPLETED?' AND RECORD RESPONSE.",
+                    "description": "ENUMERATOR: DO NOT READ RESPONSE OPTIONS. IF THE RESPONDENT INDICATES 'STILL IN SCHOOL' OR STATES THEY HAVE STARTED BUT NOT COMPLETED A LEVEL OF EDUCATION, ASK: 'What is the HIGHEST level of education COMPLETED?' AND RECORD RESPONSE. / [ఎన్యూమరేటర్: ప్రతిస్పందన ఎంపికలను చదవవద్దు. ప్రతివాది అయితే &quot;ఇప్పటికీ పాఠశాలలో ఉన్నారు&quot; లేదా వారు ప్రారంభించిన రాష్ట్రాలను సూచిస్తారు కానీ కాదు విద్య యొక్క ఒక స్థాయిని పూర్తి చేసి, అడగండి: &quot;అత్యున్నత స్థాయి విద్య ఏమిటి పూర్తయిందా?&quot; మరియు రికార్డ్ రెస్పాన్స్.]",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Illiterate",
-                            "text": "Illiterate"
+                            "text": "Illiterate / నిరక్షరాస్యుడు"
                         },
                         {
                             "value": "Literate but no formal schooling",
-                            "text": "Literate but no formal schooling"
+                            "text": "Literate but no formal schooling / అక్షరాస్యులు కానీ అధికారిక పాఠశాల విద్య లేదు"
                         },
                         {
                             "value": "Primary education (primary certificate)",
-                            "text": "Primary education (primary certificate)"
+                            "text": "Primary education (primary certificate) / ప్రాథమిక విద్య (ప్రాథమిక ధృవీకరణ పత్రం)"
                         },
                         {
                             "value": "Upper primary (upper primary certificate)",
-                            "text": "Upper primary (upper primary certificate)"
+                            "text": "Upper primary (upper primary certificate) / అప్పర్ ప్రైమరీ (అప్పర్ ప్రైమరీ సర్టిఫికెట్)"
                         },
                         {
                             "value": "High school; Industrial training institute (matriculation certificate or ITI certificate)",
-                            "text": "High school; Industrial training institute (matriculation certificate or ITI certificate)"
+                            "text": "High school; Industrial training institute (matriculation certificate or ITI certificate) / ఉన్నత పాఠశాల; పారిశ్రామిక శిక్షణా సంస్థ (మెట్రిక్యులేషన్ సర్టిఫికేట్ లేదా ITI సర్టిఫికేట్)"
                         },
                         {
                             "value": "Senior secondary / Intermediate (senior secondary school leaving certificate)",
-                            "text": "Senior secondary / Intermediate (senior secondary school leaving certificate)"
+                            "text": "Senior secondary / Intermediate (senior secondary school leaving certificate) / సీనియర్ సెకండరీ / ఇంటర్మీడియట్ (సీనియర్ సెకండరీ స్కూల్ లీవింగ్ సర్టిఫికేట్)"
                         },
                         {
                             "value": "Technical education training",
-                            "text": "Technical education training"
+                            "text": "Technical education training / సాంకేతిక విద్య శిక్షణ"
                         },
                         {
                             "value": "Nursing, general nursing and midwifery (GNM); Junior teachers training (diploma)",
-                            "text": "Nursing, general nursing and midwifery (GNM); Junior teachers training (diploma)"
+                            "text": "Nursing, general nursing and midwifery (GNM); Junior teachers training (diploma) / నర్సింగ్, జనరల్ నర్సింగ్ మరియు మిడ్‌వైఫరీ (GNM); జూనియర్ ఉపాధ్యాయుల శిక్షణ (డిప్లొమా)"
                         },
                         {
                             "value": "Bachelor (university 1st) / MBBS, LLB",
-                            "text": "Bachelor (university 1st) / MBBS, LLB"
+                            "text": "Bachelor (university 1st) / MBBS, LLB / బ్యాచిలర్ (విశ్వవిద్యాలయం 1వ) / MBBS, LLB"
                         },
                         {
                             "value": "Master (university 2nd) / Post-graduate diploma",
-                            "text": "Master (university 2nd) / Post-graduate diploma"
+                            "text": "Master (university 2nd) / Post-graduate diploma / మాస్టర్ (విశ్వవిద్యాలయం 2వ) / పోస్ట్-గ్రాడ్యుయేట్ డిప్లొమా"
                         },
                         {
                             "value": "Doctor (tertiary 2nd)",
-                            "text": "Doctor (tertiary 2nd)"
+                            "text": "Doctor (tertiary 2nd) / డాక్టర్ (తృతీయ 2వ)"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ]
                 },
@@ -254,29 +394,51 @@
                     "type": "dropdown",
                     "name": "participant_occupation",
                     "title": {
-                        "default": "What is your occupation?",
-                        "hi": "आपका व्यवसाय क्या है?"
+                        "default": "What is your occupation? / మీ వృత్తి ఏమిటి?",
+                        "hi": "మీ వృత్తి ఏమిటి?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
-                            "value": "Option 1",
-                            "text": "Option 1"
+                            "value": "Farmer or Agricultural Worker",
+                            "text": "Farmer or Agricultural Worker / రైతు లేదా వ్యవసాయ కూలీ"
                         },
                         {
-                            "value": "Option 2",
-                            "text": "Option 2"
+                            "value": "Entrepreneur or Business Owner",
+                            "text": "Entrepreneur or Business Owner / వ్యాపారస్థుడు"
+                        },
+                        {
+                            "value": "Government Employee",
+                            "text": "Government Employee / ప్రభుత్వ ఉద్యోగి"
+                        },
+                        {
+                            "value": "Company Employee (e.g., Corporate, Administrative, Technical)",
+                            "text": "Company Employee (e.g., Corporate, Administrative, Technical) / ప్రైవేట్ ఉద్యోగి"
+                        },
+                        {
+                            "value": "Self Employee",
+                            "text": "Self Employee / స్వయం ఉపాధి"
+                        },
+                        {
+                            "value": "Skilled Labor (Mechanic, Electrician, Construction, etc.)",
+                            "text": "Skilled Labor (Mechanic, Electrician, Construction, etc.) / నైపుణ్య కార్మికుడు"
+                        },
+                        {
+                            "value":"Unemployed",
+                            "text":"Unemployed / నిరుద్యోగి"
                         }
-                    ]
+                    ],
+                     "hasOther": true,
+                     "otherText": "Other (please specify) / ఇతర (దయచేసి పేర్కొనండి)"
                 },
                 {
                     "type": "text",
                     "name": "participant_income",
                     "title": {
-                        "default": "How much money do you receive in one month? This could include money given to you from relatives or remittances or any small jobs you may do.",
-                        "hi": "आपको एक महीने में कितना पैसा मिलता है? इसमें रिश्तेदारों से आपको दिया गया धन या प्रेषण या आपके द्वारा किया जाने वाला कोई छोटा काम शामिल हो सकता है।"
+                        "default": "How much money do you receive in one month? This could include money given to you from relatives or remittances or any small jobs you may do. / మీరు ఒక నెలలో ఎంత డబ్బు అందుకుంటారు? ఇందులో బంధువులు లేదా చెల్లింపులు లేదా మీరు చేసే ఏవైనా చిన్న ఉద్యోగాల నుండి మీకు ఇచ్చిన డబ్బు కూడా ఉండవచ్చు.",
+                        "hi": "మీరు ఒక నెలలో ఎంత డబ్బు అందుకుంటారు? ఇందులో బంధువులు లేదా చెల్లింపులు లేదా మీరు చేసే ఏవైనా చిన్న ఉద్యోగాల నుండి మీకు ఇచ్చిన డబ్బు కూడా ఉండవచ్చు."
                     },
-                    "description": "Enumerator: if the respondent does not know, please ask them for their best guess. Record the amount in Rupees. Enter -77 if they refuse to answer. Enter -99 if they don't know",
+                    "description": "Enumerator: if the respondent does not know, please ask them for their best guess. Record the amount in Rupees. Enter -77 if they refuse to answer. Enter -99 if they don't know / ఎన్యుమరేటర్: ప్రతివాదికి తెలియకపోతే, దయచేసి వారి ఉత్తమ అంచనా కోసం వారిని అడగండి. రూపాయిలలో మొత్తాన్ని నమోదు చేయండి. వారు సమాధానం ఇవ్వడానికి నిరాకరిస్తే -77ని నమోదు చేయండి. వారికి __________ తెలియకపోతే -99ని నమోదు చేయండి",
                     "inputType": "number",
                     "isRequired": true
                 },
@@ -284,55 +446,55 @@
                     "type": "dropdown",
                     "name": "participant_religion",
                     "title": {
-                        "default": "What is your present religion, if any? Are you Hindu, Muslim, Christian, Sikh, Buddhist, Jain, some other religion or have no religion?",
-                        "hi": "आपका वर्तमान धर्म क्या है, यदि कोई है? क्या आप हिंदू, मुस्लिम, ईसाई, सिख, बौद्ध हैं? जैन, कोई और धर्म या कोई धर्म नहीं?"
+                        "default": "What is your present religion, if any? Are you Hindu, Muslim, Christian, Sikh, Buddhist, Jain, some other religion or have no religion? / బి.05 మీ ప్రస్తుత మతం ఏదైనా ఉంటే ఏమిటి? మీరు హిందువా, ముస్లిం, క్రిస్టియన్, సిక్కు, బౌద్ధ, జైన్, వేరే మతం లేదా మతం లేదా?",
+                        "hi": "బి.05 మీ ప్రస్తుత మతం ఏదైనా ఉంటే ఏమిటి? మీరు హిందువా, ముస్లిం, క్రిస్టియన్, సిక్కు, బౌద్ధ, జైన్, వేరే మతం లేదా మతం లేదా?"
                     },
-                    "description": "INTERVIEWER: DO NOT JUDGE BASED ON APPEARANCE; READ THE ENTIRE QUESTION. IF RESPONDENT NAMES MORE THAN ONE OF THESE GROUPS, PROBE TO LEARN WHICH RELIGION THE RESPONDENT IDENTIFIES WITH MORE AND RECORD RESPONSE HERE. RECORD ANY OTHER RESPONSES IN THE SECONDARY RESPONSE QUESTION.",
+                    "description": "INTERVIEWER: DO NOT JUDGE BASED ON APPEARANCE; READ THE ENTIRE QUESTION. IF RESPONDENT NAMES MORE THAN ONE OF THESE GROUPS, PROBE TO LEARN WHICH RELIGION THE RESPONDENT IDENTIFIES WITH MORE AND RECORD RESPONSE HERE. RECORD ANY OTHER RESPONSES IN THE SECONDARY RESPONSE QUESTION. / [మధ్యవర్తి: తీర్పు చెప్పవద్దు ప్రదర్శన ఆధారంగా; మొత్తం ప్రశ్నను చదవండి. ప్రతివాది అయితే ఈ సమూహాలలో ఒకటి కంటే ఎక్కువ పేర్లు, ఏది తెలుసుకోవడానికి పరిశోధించండి మతం ప్రతివాది మరింత మరియు రికార్డ్‌తో గుర్తిస్తుంది ఇక్కడ ప్రతిస్పందన. సెకండరీలో ఏవైనా ఇతర ప్రతిస్పందనలను రికార్డ్ చేయండి ప్రతిస్పందన ప్రశ్న.]",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Hindu",
-                            "text": "Hindu"
+                            "text": "Hindu / హిందూ"
                         },
                         {
                             "value": "Muslim",
-                            "text": "Muslim"
+                            "text": "Muslim (DO NOT READ: Sunni, Shia, Bohra, Ahmadiyya, Sufi, Aga Khani, etc.) / ముస్లింలు (చదవకండి: సున్నీ, షియా, బోహ్రా, అహ్మదీయ, సూఫీ, అగా ఖానీ, మొదలైనవి)"
                         },
                         {
                             "value": "Christian",
-                            "text": "Christian"
+                            "text": "Christian (DO NOT READ: Church of North India, Catholic, etc.) / క్రిస్టియన్ (చదవవద్దు: చర్చ్ ఆఫ్ నార్త్ ఇండియా, కాథలిక్ మొదలైనవి)"
                         },
                         {
                             "value": "Sikh",
-                            "text": "Sikh"
+                            "text": "Sikh / సిక్కు"
                         },
                         {
                             "value": "Buddhist",
-                            "text": "Buddhist"
+                            "text": "Buddhist (DO NOT READ: Navayana, Therevada, Ambedkarite, etc.) / బౌద్ధ (చదవవద్దు: నవయాన, థెరెవాడ, అంబేద్కరైట్, మొదలైనవి) "
                         },
                         {
                             "value": "Jain",
-                            "text": "Jain"
+                            "text": "Jain / జైన్"
                         },
                         {
                             "value": "Some other religion",
-                            "text": "Some other religion"
+                            "text": "Some other religion / కొన్ని ఇతర మతాలు"
                         },
                         {
                             "value": "No religion",
-                            "text": "No religion"
+                            "text": "No religion (DO NOT READ: atheist, no particular religion) / మతం లేదు (చదవవద్దు: నాస్తికుడు, ప్రత్యేక మతం లేదు)"
                         },
                         {
                             "value": "Parsi",
-                            "text": "Parsi"
+                            "text": "Parsi / పార్సీ (చదవవద్దు)"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది "
                         }
                     ]
                 },
@@ -340,46 +502,46 @@
                     "type": "dropdown",
                     "name": "participant_caste_category",
                     "title": {
-                        "default": "Are you from a ...?",
-                        "hi": "क्या आप ... से हैं?"
+                        "default": "Are you from a ...? / మీరు ఒక ...?",
+                        "hi": "మీరు ఒక ...?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "General Category",
-                            "text": "General Category"
+                            "text": "General Category / సాధారణ వర్గం"
                         },
                         {
                             "value": "Scheduled Caste",
-                            "text": "Scheduled Caste"
+                            "text": "Scheduled Caste / షెడ్యూల్డ్ కులం"
                         },
                         {
                             "value": "Scheduled Tribe",
-                            "text": "Scheduled Tribe"
+                            "text": "Scheduled Tribe / షెడ్యూల్డ్ తెగ [OR]"
                         },
                         {
                             "value": "Other Backward Class",
-                            "text": "Other Backward Class"
+                            "text": "Other Backward Class / ఇతర వెనుకబడిన తరగతి"
                         },
                         {
                             "value": "Most Backward Class",
-                            "text": "Most Backward Class"
+                            "text": "Most Backward Class / అత్యంత వెనుకబడిన తరగతి"
                         },
                         {
                             "value": "I do not/my religion does not recognize a caste system",
-                            "text": "I do not/my religion does not recognize a caste system"
+                            "text": "I do not/my religion does not recognize a caste system / నేను/నా మతం కుల వ్యవస్థను గుర్తించలేదు"
                         },
                         {
                             "value": "Not a member of any caste/category/class",
-                            "text": "Not a member of any caste/category/class"
+                            "text": "Not a member of any caste/category/class / ఏ కులం/వర్గం/తరగతి సభ్యుడు కాదు"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది"
                         }
                     ]
                 },
@@ -388,30 +550,30 @@
                     "name": "participant_caste",
                     "visibleIf": "{B06} = 1",
                     "title": {
-                        "default": "Are you ...?",
+                        "default": "Are you ...? / మీరు …?",
                         "hi": "क्या आप...?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Brahmin",
-                            "text": "Brahmin"
+                            "text": "Brahmin / బ్రాహ్మణుడు"
                         },
                         {
                             "value": "Other Forward Caste",
-                            "text": "Other Forward Caste"
+                            "text": "Other Forward Caste / ఇతర ముందడుగు కులం"
                         },
                         {
                             "value": "Neither or just General Category",
-                            "text": "Neither or just General Category"
+                            "text": "Neither or just General Category / లేదా సాధారణ వర్గం కాదు"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది"
                         }
                     ]
                 }
@@ -424,171 +586,191 @@
                     "type": "dropdown",
                     "name": "participant_political_party",
                     "title": {
-                        "default": "Regardless of which party you voted for in the last national election, which political party, if any, do you feel closest to?",
-                        "hi": "भले ही पिछले राष्ट्रीय चुनाव में आपने किसी भी पार्टी को वोट दिया हो, आप किस राजनीतिक दल, यदि कोई हो, के सबसे करीब महसूस करते हैं?"
+                        "default": "Regardless of which party you voted for in the last national election, which political party, if any, do you feel closest to? / [పార్టీ చిహ్నాల చిత్రాలతో కార్డ్‌ని చూపించు] గత జాతీయ ఎన్నికల్లో మీరు ఏ పార్టీకి ఓటు వేసినప్పటికీ, ఏ రాజకీయ పార్టీకి, ఏదైనా ఉంటే, మీకు అత్యంత సన్నిహితంగా భావిస్తున్నారా?",
+                        "hi": "[పార్టీ చిహ్నాల చిత్రాలతో కార్డ్‌ని చూపించు] గత జాతీయ ఎన్నికల్లో మీరు ఏ పార్టీకి ఓటు వేసినప్పటికీ, ఏ రాజకీయ పార్టీకి, ఏదైనా ఉంటే, మీకు అత్యంత సన్నిహితంగా భావిస్తున్నారా?"
                     },
-                    "description": "INTERVIEWER: DO NOT READ RESPONSE OPTIONS. RESPONDENT MAY VERBALLY OFFER A PARTY NAME OR USE THE SHOWCARD. MAKE SURE RESPONDENT ONLY SELECTS ONE PARTY. [USE SHOW CARD]",
+                    "description": "INTERVIEWER: DO NOT READ RESPONSE OPTIONS. RESPONDENT MAY VERBALLY OFFER A PARTY NAME OR USE THE SHOWCARD. MAKE SURE RESPONDENT ONLY SELECTS ONE PARTY. [USE SHOW CARD] / [ప్రత్యేకత: ప్రతిస్పందన ఎంపికలను చదవవద్దు. ప్రతివాది మౌఖికంగా ఉండవచ్చు పార్టీ పేరును ఆఫర్ చేయండి లేదా షోకార్డ్‌ని ఉపయోగించండి. ప్రతివాది మాత్రమే అని నిర్ధారించుకోండి ఒక పార్టీని ఎంపిక చేస్తుంది.] [షో కార్డ్‌ని ఉపయోగించండి]",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Bharatiya Janata Party (BJP)",
-                            "text": "Bharatiya Janata Party (BJP)"
+                            "text": "Bharatiya Janata Party (BJP) / భారతీయ జనతా పార్టీ (బిజెపి)"
                         },
                         {
                             "value": "Congress Party / Indian National Congress (INC)",
-                            "text": "Congress Party / Indian National Congress (INC)"
+                            "text": "Congress Party / Indian National Congress (INC) / కాంగ్రెస్ పార్టీ / ఇండియన్ నేషనల్ కాంగ్రెస్ (INC)"
                         },
                         {
-                            "value": "All India Anna Dravida Munnetra Kazhagam (AIADMK) in Puducherry/Tamil Nadu / Kerala Congress (M) in Kerala",
-                            "text": "All India Anna Dravida Munnetra Kazhagam (AIADMK) in Puducherry/Tamil Nadu / Kerala Congress (M) in Kerala"
+                            "value": "All India Anna Dravida Munnetra Kazhagam (AIADMK)",
+                            "text": "All India Anna Dravida Munnetra Kazhagam (AIADMK) / పుదుచ్చేరి/తమిళనాడులో ఆల్ ఇండియా అన్నా ద్రవిడ మున్నేట్ర కజగం (AIADMK)"
+                        },
+                        {
+                            "value": "Kerala Congress (M)",
+                            "text": "Kerala Congress (M) / కేరళలో కేరళ కాంగ్రెస్ (ఎం)"
                         },
                         {
                             "value": "Trinamul Congress / All India Trinamul Congress (AITC/TMC)",
-                            "text": "Trinamul Congress / All India Trinamul Congress (AITC/TMC)"
+                            "text": "Trinamul Congress / All India Trinamul Congress (AITC/TMC) / తృణముల్ కాంగ్రెస్ / ఆల్ ఇండియా తృణముల్ కాంగ్రెస్ (AITC/TMC)"
                         },
                         {
                             "value": "Biju Janata Dal (BJD)",
-                            "text": "Biju Janata Dal (BJD)"
+                            "text": "Biju Janata Dal (BJD) / బిజూ జనతా దళ్ (BJD)"
                         },
                         {
-                            "value": "Samajwadi Party (SP) in Uttar Pradesh / Telugu Desam Party (TDP) in Andhra Pradesh/Telangana / Jammu & Kashmir National Panthers Party (JKNPP) in Jammu & Kashmir",
-                            "text": "Samajwadi Party (SP) in Uttar Pradesh / Telugu Desam Party (TDP) in Andhra Pradesh/Telangana / Jammu & Kashmir National Panthers Party (JKNPP) in Jammu & Kashmir"
+                            "value": "Samajwadi Party (SP)",
+                            "text": "Samajwadi Party (SP) in Uttar Pradesh / ఉత్తరప్రదేశ్‌లో సమాజ్‌వాదీ పార్టీ (SP)"
                         },
                         {
-                            "value": "Shiv Sena in Maharashtra / Jharkhand Mukti Morcha in Jharkhand",
-                            "text": "Shiv Sena in Maharashtra / Jharkhand Mukti Morcha in Jharkhand"
+                            "value": "Telugu Desam Party (TDP)",
+                            "text": "Telugu Desam Party (TDP) in Andhra Pradesh/Telangana / ఆంధ్రప్రదేశ్/తెలంగాణలో తెలుగుదేశం పార్టీ (TDP)"
                         },
                         {
-                            "value": "BSP: Bahujan Samaj Party / Asom Gana Parishad in Assam",
-                            "text": "BSP: Bahujan Samaj Party / Asom Gana Parishad in Assam"
+                            "value": "Jammu & Kashmir National Panthers Party (JKNPP)",
+                            "text": "Jammu & Kashmir National Panthers Party (JKNPP) in Jammu & Kashmir / జమ్మూ & కాశ్మీర్ నేషనల్ పాంథర్స్ పార్టీ (JKNPP)"
+                        },
+                        {
+                            "value": "Shiv Sena",
+                            "text": "Shiv Sena in Maharashtra / మహారాష్ట్రలో శివసేన"
+                        },
+                        {
+                            "value": "Jharkhand Mukti Morcha",
+                            "text": "Jharkhand Mukti Morcha in Jharkhand / జార్ఖండ్‌లోని జార్ఖండ్ ముక్తి మోర్చా"
+                        },
+                        {
+                            "value": "Bahujan Samaj Party (BSP)",
+                            "text": "Bahujan Samaj Party (BSP) / బహుజన్ సమాజ్ పార్టీ (BSP)"
+                        },
+                        {
+                            "value": "Asom Gana Parishad",
+                            "text": "Asom Gana Parishad in Assam / అస్సాంలోని అసోం గణ పరిషత్"
                         },
                         {
                             "value": "Telangana Rashtra Samithi (TRS)",
-                            "text": "Telangana Rashtra Samithi (TRS)"
+                            "text": "Telangana Rashtra Samithi (TRS) / తెలంగాణ రాష్ట్ర సమితి (TRS)"
                         },
                         {
                             "value": "Dravida Munnetra Kazhagam (DMK)",
-                            "text": "Dravida Munnetra Kazhagam (DMK)"
+                            "text": "Dravida Munnetra Kazhagam (DMK) / ద్రవిడ మున్నేట్ర కజగం (DMK)"
                         },
                         {
                             "value": "Nationalist Congress Party (NCP)",
-                            "text": "Nationalist Congress Party (NCP)"
+                            "text": "Nationalist Congress Party (NCP) / నేషనలిస్ట్ కాంగ్రెస్ పార్టీ (NCP)"
                         },
                         {
                             "value": "Janata Dal (United) (JD(U))",
-                            "text": "Janata Dal (United) (JD(U))"
+                            "text": "Janata Dal (United) (JD(U)) / జనతాదళ్ (యునైటెడ్) (జెడి(యు))"
                         },
                         {
                             "value": "Rashtriya Janata Dal (RJD)",
-                            "text": "Rashtriya Janata Dal (RJD)"
+                            "text": "Rashtriya Janata Dal (RJD) / రాష్ట్రీయ జనతా దళ్ (RJD)"
                         },
                         {
                             "value": "Aam Aadmi Party (AAP)",
-                            "text": "Aam Aadmi Party (AAP)"
+                            "text": "Aam Aadmi Party (AAP) / ఆమ్ ఆద్మీ పార్టీ (AAP)"
                         },
                         {
                             "value": "Shiromani Akali Dal (SAD)",
-                            "text": "Shiromani Akali Dal (SAD)"
+                            "text": "Shiromani Akali Dal (SAD) / శిరోమణి అకాలీ దళ్ (SAD)"
                         },
                         {
                             "value": "Yuvajana Sramika Rythu Congress Party (YSR Congress Party)",
-                            "text": "Yuvajana Sramika Rythu Congress Party (YSR Congress Party)"
+                            "text": "Yuvajana Sramika Rythu Congress Party (YSR Congress Party) / యువజన శ్రామిక రైతు కాంగ్రెస్ పార్టీ (వైఎస్ఆర్ కాంగ్రెస్ పార్టీ)"
                         },
                         {
                             "value": "Communist Party of India (CPI)",
-                            "text": "Communist Party of India (CPI)"
+                            "text": "Communist Party of India (CPI) / కమ్యూనిస్ట్ పార్టీ ఆఫ్ ఇండియా (CPI)"
                         },
                         {
                             "value": "Jammu and Kashmir Peoples Democratic Party (JKPDP)",
-                            "text": "Jammu and Kashmir Peoples Democratic Party (JKPDP)"
+                            "text": "Jammu and Kashmir Peoples Democratic Party (JKPDP) / జమ్మూ కాశ్మీర్ పీపుల్స్ డెమోక్రటిక్ పార్టీ (JKPDP)"
                         },
                         {
-                            "value": "CPI (M): Communist Party of India (Marxist)",
-                            "text": "CPI (M): Communist Party of India (Marxist)"
+                            "value": "Communist Party of India (Marxist) (CPI(M))",
+                            "text": "Communist Party of India (Marxist) (CPI(M)) / కమ్యూనిస్ట్ పార్టీ ఆఫ్ ఇండియా (మార్క్సిస్ట్)"
                         },
                         {
-                            "value": "League / Indian Union Muslim League (IUML)",
-                            "text": "League / Indian Union Muslim League (IUML)"
+                            "value": "Indian Union Muslim League (IUML)",
+                            "text": "Indian Union Muslim League (IUML) / ఇండియన్ యూనియన్ ముస్లిం లీగ్ (IUML)"
                         },
                         {
-                            "value": "Janata Dal (Secular) (JD (S))",
-                            "text": "Janata Dal (Secular) (JD (S))"
+                            "value": "Janata Dal (Secular) (JD(S))",
+                            "text": "Janata Dal (Secular) (JD(S)) / జనతాదళ్ (సెక్యులర్) (జెడి (ఎస్))"
                         },
                         {
                             "value": "All India United Democratic Front (AIUDF)",
-                            "text": "All India United Democratic Front (AIUDF)"
+                            "text": "All India United Democratic Front (AIUDF) / ఆల్ ఇండియా యునైటెడ్ డెమోక్రటిక్ ఫ్రంట్ (AIUDF)"
                         },
                         {
                             "value": "Sikkim Democratic Front (SDF)",
-                            "text": "Sikkim Democratic Front (SDF)"
+                            "text": "Sikkim Democratic Front (SDF) / సిక్కిం డెమోక్రటిక్ ఫ్రంట్ (SDF)"
                         },
                         {
                             "value": "Other party",
-                            "text": "Other party"
+                            "text": "Other party / ఇతర పార్టీ (QPTY1ని పేర్కొనండి)"
                         },
                         {
                             "value": "Do not feel close to any party",
-                            "text": "Do not feel close to any party"
+                            "text": "Do not feel close to any party / ఏ పార్టీతోనూ సన్నిహితంగా భావించవద్దు"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know (DO NOT READ) / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused (DO NOT READ) / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ]
-                },
+                },                
                 {
                     "type": "text",
                     "name": "other_political_party",
                     "visibleIf": "{participant_political_party} = 24",
-                    "title": "Record the respondent's \"Other party\"",
+                    "title": "Record the respondent's \"Other party\" ప్రతివాది యొక్క “అదర్ పార్టీ”ని రికార్డ్ చేయండి",
                     "isRequired": true
                 },
                 {
                     "type": "matrix",
                     "name": "party_favour",
                     "title": {
-                        "default": "Please tell me if you have a very favorable, somewhat favorable, somewhat unfavorable or very unfavorable opinion of the following parties:",
-                        "hi": "कृपया मुझे बताएं कि क्या आपके पास के बारे में बहुत अनुकूल, कुछ हद तक अनुकूल, कुछ हद तक प्रतिकूल या बहुत प्रतिकूल राय है?"
+                        "default": "Please tell me if you have a very favorable, somewhat favorable, somewhat unfavorable or very unfavorable opinion of the following parties: / మీకు చాలా అనుకూలమైన, కొంత అనుకూలమైన, కొంత ప్రతికూలమైన లేదా చాలా అననుకూలమైన అభిప్రాయం ఉంటే దయచేసి నాకు చెప్పండి",
+                        "hi": "మీకు చాలా అనుకూలమైన, కొంత అనుకూలమైన, కొంత ప్రతికూలమైన లేదా చాలా అననుకూలమైన అభిప్రాయం ఉంటే దయచేసి నాకు చెప్పండి"
                     },
                     "isRequired": true,
                     "columns": [
                         {
                             "value": 1,
-                            "text": "Very favorable / बहुत अनुकूल"
+                            "text": "Very favorable / చాలా అనుకూలమైనది"
                         },
                         {
                             "value": 2,
-                            "text": "Somewhat favorable / कुछ हद तक अनुकूल"
+                            "text": "Somewhat favorable / కొంతవరకు అనుకూలమైనది"
                         },
                         {
                             "value": 3,
-                            "text": "Somewhat unfavorable / कुछ हद तक प्रतिकूल"
+                            "text": "Somewhat unfavorable / కొంతవరకు అననుకూలమైనది"
                         },
                         {
                             "value": 4,
-                            "text": "Very unfavorable / बहुत प्रतिकूल"
+                            "text": "Very unfavorable / చాలా అననుకూలమైనది"
                         },
                         {
                             "value": 98,
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": 99,
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ],
                     "rows": [
                         {
                             "value": "BJP",
-                            "text": "the BJP"
+                            "text": "the BJP / బిజెపి"
                         },
                         {
                             "value": "Congress",
-                            "text": "Congress"
+                            "text": "Congress / కాంగ్రెస్"
                         }
                     ]
                 },
@@ -596,34 +778,34 @@
                     "type": "radiogroup",
                     "name": "feel_about_pm_modi",
                     "title": {
-                        "default": "How favorably do you feel about Prime Minister Narendra Modi?",
-                        "hi": "आप प्रधानमंत्री नरेंद्र मोदी के बारे में कितना अनुकूल महसूस करते हैं?"
+                        "default": "How favorably do you feel about Prime Minister Narendra Modi? / ప్రధాన మంత్రి నరేంద్ర మోదీ పట్ల మీకు ఎంత సానుకూలంగా అనిపిస్తుంది?",
+                        "hi": "ప్రధాన మంత్రి నరేంద్ర మోదీ పట్ల మీకు ఎంత సానుకూలంగా అనిపిస్తుంది?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": 1,
-                            "text": "Very favorable / बहुत अनुकूल"
+                            "text": "Very favorable / చాలా అనుకూలమైనది"
                         },
                         {
                             "value": 2,
-                            "text": "Somewhat favorable / कुछ हद तक अनुकूल"
+                            "text": "Somewhat favorable / కొంతవరకు అనుకూలమైనది"
                         },
                         {
                             "value": 3,
-                            "text": "Somewhat unfavorable / कुछ हद तक प्रतिकूल"
+                            "text": "Somewhat unfavorable / కొంతవరకు అననుకూలమైనది"
                         },
                         {
                             "value": 4,
-                            "text": "Very unfavorable / बहुत प्रतिकूल"
+                            "text": "Very unfavorable / చాలా అననుకూలమైనది"
                         },
                         {
                             "value": 98,
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": 99,
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ]
                 }
@@ -636,23 +818,23 @@
                     "type": "radiogroup",
                     "name": "fertility_rate_agreement",
                     "title": {
-                        "default": "Which of the three sentences do you agree with most?",
-                        "hi": "आप तीनों में से किस वाक्य से सबसे अधिक सहमत हैं?"
+                        "default": "Which of the three sentences do you agree with most? / మీరు మూడు వాక్యాలలో ఏది ఎక్కువగా అంగీకరిస్తారు?",
+                        "hi": "మీరు మూడు వాక్యాలలో ఏది ఎక్కువగా అంగీకరిస్తారు?"
                     },
-                    "description": "ENUMERATOR: PLEASE DON'T READ THE NUMBER AT THE END OF THE SENTENCE",
+                    "description": "ENUMERATOR: PLEASE DON'T READ THE NUMBER AT THE END OF THE SENTENCE / గణనకర్త: దయచేసి వాక్యం చివరిలో ఉన్న సంఖ్యను చదవవద్దు [రాండమైజ్ ఎంపికలు]",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Fertility rates declined for Hindus more than Muslims",
-                            "text": "Fertility rates declined for Hindus more than Muslims / हिंदुओं के बच्चे देने का डर मुसलमानों से ज़्यादा काम हो गया है, पहले से?"
+                            "text": "Fertility rates declined for Hindus more than Muslims / ముస్లింల కంటే హిందువులకు సంతానోత్పత్తి రేట్లు తగ్గాయి (1)"
                         },
                         {
                             "value": "Fertility rates declined at the same rate for both Hindus and Muslims",
-                            "text": "Fertility rates declined at the same rate for both Hindus and Muslims / हिंदुओं और मुसलमानों दोनों का बच्चे देने का डर काम हुआ है, पहले से?"
+                            "text": "Fertility rates declined at the same rate for both Hindus and Muslims / సంతానోత్పత్తి రేట్లు హిందువులు మరియు ముస్లింలకు ఒకే రేటుతో తగ్గాయి"
                         },
                         {
                             "value": "Fertility rates declined for Muslims more than Hindus",
-                            "text": "Fertility rates declined for Muslims more than Hindus / मुसलमानों के बच्चे देने का डर हिंदुओं से ज़्यादा काम हो गया है, पहले से?"
+                            "text": "Fertility rates declined for Muslims more than Hindus / హిందువుల కంటే ముస్లింలకు సంతానోత్పత్తి రేట్లు తగ్గాయి"
                         }
                     ]
                 },
@@ -660,27 +842,27 @@
                     "type": "radiogroup",
                     "name": "love_jihad_truthfulness",
                     "title": {
-                        "default": "Which of the four statements do you agree with the most?",
-                        "hi": "आप इन चार कथनों में से किस कथन से सबसे अधिक सहमत हैं?"
+                        "default": "Which of the four statements do you agree with the most? / మీరు నాలుగు స్టేట్‌మెంట్‌లలో ఏది ఎక్కువగా అంగీకరిస్తున్నారు?",
+                        "hi": "మీరు నాలుగు స్టేట్‌మెంట్‌లలో ఏది ఎక్కువగా అంగీకరిస్తున్నారు?"
                     },
-                    "description": "ENUMERATOR: PLEASE DON'T READ THE NUMBER AT THE END OF THE SENTENCE",
+                    "description": "ENUMERATOR: PLEASE DON'T READ THE NUMBER AT THE END OF THE SENTENCE / గణనకర్త: దయచేసి వాక్యం చివరిలో ఉన్న సంఖ్యను చదవవద్దు [రాండమైజ్ ఎంపికలు",
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "All of the Love Jihad stories are fake",
-                            "text": "All of the Love Jihad stories are fake / यदि लव जिहाद की सभी कहानियाँ फर्जी हैं"
+                            "text": "All of the Love Jihad stories are fake / లవ్ జిహాద్ కథలన్నీ ఆబద్దం (1)"
                         },
                         {
                             "value": "Most of the Love Jihad stories are fake, some are true",
-                            "text": "Most of the Love Jihad stories are fake, some are true / लव जिहाद की अधिकांश कहानियाँ झूठी हैं, कुछ सच्ची हैं"
+                            "text": "Most of the Love Jihad stories are fake, some are true / లవ్ జిహాద్ కథలు చాలా వరకు నకిలీవి, కొన్ని నిజం"
                         },
                         {
                             "value": "Most of the Love Jihad stories are true, some are fake",
-                            "text": "Most of the Love Jihad stories are true, some are fake / लव जिहाद की ज्यादातर कहानियाँ सच्ची हैं, कुछ झूठी हैं"
+                            "text": "Most of the Love Jihad stories are true, some are fake / లవ్ జిహాద్ కథలు చాలా వరకు నిజం, కొన్ని నకిలీవి"
                         },
                         {
                             "value": "All of the Love Jihad stories are true",
-                            "text": "All of the Love Jihad stories are true / लव जिहाद की सभी कहानियाँ सच्ची हैं"
+                            "text": "All of the Love Jihad stories are true / లవ్ జిహాద్ కథలన్నీ నిజమే "
                         }
                     ]
                 },
@@ -688,18 +870,18 @@
                     "type": "radiogroup",
                     "name": "population_balance_laws",
                     "title": {
-                        "default": "Do you think laws are required to maintain balance in populations within communities (Hindus and Muslims)?",
-                        "hi": "क्या आपको लगता है कि समुदायों (हिंदू और मुस्लिम) के भीतर आबादी में संतुलन बनाए रखने के लिए कानूनों की आवश्यकता है?"
+                        "default": "Do you think laws are required to maintain balance in populations within communities (Hindus and Muslims)? / కమ్యూనిటీలలో (హిందువులు మరియు ముస్లింలు) జనాభాలో సమతుల్యతను కొనసాగించడానికి చట్టాలు అవసరమని మీరు భావిస్తున్నారా?",
+                        "hi": "కమ్యూనిటీలలో (హిందువులు మరియు ముస్లింలు) జనాభాలో సమతుల్యతను కొనసాగించడానికి చట్టాలు అవసరమని మీరు భావిస్తున్నారా?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Yes, we need to have laws to maintain a balance in communities",
-                            "text": "Yes, we need to have laws to maintain a balance in communities"
+                            "text": "Yes, we need to have laws to maintain a balance in communities / అవును, కమ్యూనిటీలలో సమతుల్యతను కాపాడుకోవడానికి మనకు చట్టాలు ఉండాలి"
                         },
                         {
                             "value": "No, it's not required",
-                            "text": "No, it's not required"
+                            "text": "No, it's not required / లేదు, ఇది అవసరం లేదు"
                         }
                     ]
                 },
@@ -707,18 +889,18 @@
                     "type": "radiogroup",
                     "name": "love_jihad_laws",
                     "title": {
-                        "default": "Do you think laws are required to prevent Love Jihad?",
-                        "hi": "क्या आपको लगता है कि लव जिहाद को रोकने के लिए कानूनों की आवश्यकता है?"
+                        "default": "Do you think laws are required to prevent Love Jihad? / లవ్ జిహాద్‌ను నిరోధించడానికి చట్టాలు అవసరమని మీరు భావిస్తున్నారా?",
+                        "hi": "లవ్ జిహాద్‌ను నిరోధించడానికి చట్టాలు అవసరమని మీరు భావిస్తున్నారా?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Yes",
-                            "text": "Yes"
+                            "text": "Yes / అవును"
                         },
                         {
                             "value": "No",
-                            "text": "No"
+                            "text": "No / కాదు"
                         }
                     ]
                 },
@@ -726,34 +908,34 @@
                     "type": "radiogroup",
                     "name": "favorability_muslims",
                     "title": {
-                        "default": "How favorably do you feel about Muslims?",
-                        "hi": "आप मुसलमानों के प्रति कितना अनुकूल महसूस करते हैं?"
+                        "default": "How favorably do you feel about Muslims? / మీరు ముస్లింల పట్ల ఎంత సానుకూలంగా భావిస్తున్నారు ?",
+                        "hi": "మీరు ముస్లింల పట్ల ఎంత సానుకూలంగా భావిస్తున్నారు ?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Very favorable",
-                            "text": "Very favorable / बहुत अनुकूल"
+                            "text": "Very favorable / చాలా అనుకూలమైనది"
                         },
                         {
                             "value": "Somewhat favorable",
-                            "text": "Somewhat favorable / कुछ हद तक अनुकूल"
+                            "text": "Somewhat favorable / కొంతవరకు అనుకూలమైనది"
                         },
                         {
                             "value": "Somewhat unfavorable",
-                            "text": "Somewhat unfavorable / कुछ हद तक प्रतिकूल"
+                            "text": "Somewhat unfavorable / కొంతవరకు అననుకూలమైనది"
                         },
                         {
                             "value": "Very unfavorable",
-                            "text": "Very unfavorable / बहुत प्रतिकूल"
+                            "text": "Very unfavorable / చాలా అననుకూలమైనది"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ]
                 },
@@ -761,34 +943,34 @@
                     "type": "radiogroup",
                     "name": "favorability_sikhs",
                     "title": {
-                        "default": "How favorably do you feel about Sikhs?",
-                        "hi": "आप सिखों के प्रति कितना अनुकूल महसूस करते हैं?"
+                        "default": "How favorably do you feel about Sikhs? / సిక్కుల గురించి మీకు ఎంత అనుకూలంగా భావిస్తున్నారు ?",
+                        "hi": "సిక్కుల గురించి మీకు ఎంత అనుకూలంగా భావిస్తున్నారు ?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Very favorable",
-                            "text": "Very favorable / बहुत अनुकूल"
+                            "text": "Very favorable / చాలా అనుకూలమైనది"
                         },
                         {
                             "value": "Somewhat favorable",
-                            "text": "Somewhat favorable / कुछ हद तक अनुकूल"
+                            "text": "Somewhat favorable / కొంతవరకు అనుకూలమైనది"
                         },
                         {
                             "value": "Somewhat unfavorable",
-                            "text": "Somewhat unfavorable / कुछ हद तक प्रतिकूल"
+                            "text": "Somewhat unfavorable / కొంతవరకు అననుకూలమైనది"
                         },
                         {
                             "value": "Very unfavorable",
-                            "text": "Very unfavorable / बहुत प्रतिकूल"
+                            "text": "Very unfavorable / చాలా అననుకూలమైనది"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ]
                 },
@@ -796,34 +978,34 @@
                     "type": "radiogroup",
                     "name": "favorability_hindus",
                     "title": {
-                        "default": "How favorably do you feel about Hindus?",
-                        "hi": "आप हिंदुओं के बारे में कितना अनुकूल महसूस करते हैं?"
+                        "default": "How favorably do you feel about Hindus? / మీరు హిందువుల పట్ల ఎంత సానుకూలంగా భావిస్తున్నారు?",
+                        "hi": "మీరు హిందువుల పట్ల ఎంత సానుకూలంగా భావిస్తున్నారు?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Very favorable",
-                            "text": "Very favorable / बहुत अनुकूल"
+                            "text": "Very favorable / చాలా అనుకూలమైనది"
                         },
                         {
                             "value": "Somewhat favorable",
-                            "text": "Somewhat favorable / कुछ हद तक अनुकूल"
+                            "text": "Somewhat favorable / కొంతవరకు అనుకూలమైనది"
                         },
                         {
                             "value": "Somewhat unfavorable",
-                            "text": "Somewhat unfavorable / कुछ हद तक प्रतिकूल"
+                            "text": "Somewhat unfavorable / కొంతవరకు అననుకూలమైనది"
                         },
                         {
                             "value": "Very unfavorable",
-                            "text": "Very unfavorable / बहुत प्रतिकूल"
+                            "text": "Very unfavorable / చాలా అననుకూలమైనది"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ]
                 }
@@ -836,60 +1018,60 @@
                     "type": "matrix",
                     "name": "trust_in_news_sources",
                     "title": {
-                        "default": "How much do you trust news coming from:",
-                        "hi": "आप यहां से आने वाली खबरों पर कितना भरोसा करते हैं:"
+                        "default": "How much do you trust news coming from: / దీని నుండి వస్తున్న వార్తలను మీరు ఎంతవరకు విశ్వసిస్తున్నారు ?",
+                        "hi": "దీని నుండి వస్తున్న వార్తలను మీరు ఎంతవరకు విశ్వసిస్తున్నారు ?"
                     },
                     "isRequired": true,
                     "columns": [
                         {
                             "value": "Trust a lot",
-                            "text": "Trust a lot / बहुत भरोसा"
+                            "text": "Trust a lot / చాలా నమ్మకం"
                         },
                         {
                             "value": "Somewhat trust",
-                            "text": "Somewhat trust / कुछ हद तक भरोसा"
+                            "text": "Somewhat trust / కొంత నమ్మకం"
                         },
                         {
                             "value": "Trust a little",
-                            "text": "Trust a little / थोड़ा भरोसा"
+                            "text": "Trust a little / కొంచెం నమ్మకం"
                         },
                         {
                             "value": "Don't trust",
-                            "text": "Don't trust / भरोसा नहीं"
+                            "text": "Don't trust / నమ్మకండి"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ],
                     "rows": [
                         {
                             "value": "local_journalist",
-                            "text": "A local journalist / एक स्थानीय पत्रकार"
+                            "text": "A local journalist / స్థానిక జర్నలిస్టు"
                         },
                         {
                             "value": "teacher",
-                            "text": "A teacher / एक अध्यापक"
+                            "text": "A teacher / ఒక ఉపాధ్యాయుడు"
                         },
                         {
                             "value": "government_official",
-                            "text": "A government official / एक सरकारी अधिकारी"
+                            "text": "A government official / ఒక ప్రభుత్వ అధికారి"
                         },
                         {
                             "value": "national_news_website",
-                            "text": "A national news website / एक राष्ट्रीय समाचार वेबसाइट"
+                            "text": "A national news website / జాతీయ వార్తా వెబ్‌సైట్"
                         },
                         {
                             "value": "politician",
-                            "text": "A politician / एक राजनीतिज्ञ"
+                            "text": "A politician / రాజకీయ నాయకుడు"
                         },
                         {
                             "value": "news_channel",
-                            "text": "A news channel / एक न्यूज़ चैनल"
+                            "text": "A news channel / ఒక న్యూస్ ఛానల్"
                         }
                     ]
                 },
@@ -897,24 +1079,24 @@
                     "type": "text",
                     "name": "other_trusted_sources",
                     "title": {
-                        "default": "Is there anyone else you trust for receiving news?",
-                        "hi": "क्या कोई और है जिस पर आप समाचार प्राप्त करने के लिए भरोसा करते हैं?"
+                        "default": "Is there anyone else you trust for receiving news? / వార్తలను స్వీకరించడానికి మీరు విశ్వసించే ఎవరైనా ఉన్నారా",
+                        "hi": "వార్తలను స్వీకరించడానికి మీరు విశ్వసించే ఎవరైనా ఉన్నారా"
                     }
                 },
                 {
                     "type": "html",
                     "name": "break_prompt",
                     "html": {
-                        "default": "<p><strong>Thank you! Would you like to take a short 2 minute break?</strong></p>",
-                        "hi": "<p><strong>धन्यवाद! क्या आप 2 मिनट का छोटा ब्रेक लेना चाहेंगे?</strong></p>"
+                        "default": "<p><strong>Thank you! Would you like to take a short 2 minute break? / ధన్యవాదాలు! మీరు చిన్న 2 నిమిషాల విరామం తీసుకోవాలనుకుంటున్నారా? </strong></p>",
+                        "hi": "<p><strong>ధన్యవాదాలు! మీరు చిన్న 2 నిమిషాల విరామం తీసుకోవాలనుకుంటున్నారా?</strong></p>"
                     }
                 },
                 {
                     "type": "html",
                     "name": "resume_prompt",
                     "html": {
-                        "default": "<p><strong>Let's begin again. I will ask you two gamified questions now as a refresher. Listen carefully and answer!</strong></p>",
-                        "hi": "<p><strong>चलिए फिर से शुरू करते हैं. मैं अब एक रेफरेशर के रूप में आपसे दो सरल प्रश्न पूछूंगा। ध्यान से सुनें और उत्तर दें!</strong></p>"
+                        "default": "<p><strong>Let's begin again. I will ask you two gamified questions now as a refresher. Listen carefully and answer! మళ్లీ ప్రారంభిద్దాం. నేను ఇప్పుడు మిమ్మల్ని రిఫ్రెషర్‌గా రెండు గేమిఫైడ్ ప్రశ్నలను అడుగుతాను. శ్రద్ధగా విని సమాధానం చెప్పండి!</strong></p>",
+                        "hi": "<p><strong>మళ్లీ ప్రారంభిద్దాం. నేను ఇప్పుడు మిమ్మల్ని రిఫ్రెషర్‌గా రెండు గేమిఫైడ్ ప రశ్నలను అడుగుతాను. శ్రద్ధగా విని సమాధానం చెప్పండి!</strong></p>"
                     }
                 }
             ]
@@ -927,19 +1109,19 @@
                     "type": "radiogroup",
                     "name": "race_position",
                     "title": {
-                        "default": "If you were running a race, and you passed the person in second place, what place would you be in now?",
-                        "hi": "यदि आप दौड़ में भाग ले रहे थे, और आप दूसरे स्थान पर रहने वाले व्यक्ति से आगे निकल गए, तो अब आप किस स्थान पर होंगे?"
+                        "default": "If you were running a race, and you passed the person in second place, what place would you be in now? / మీరు రేసులో పరుగెత్తుతూ, ఆ వ్యక్తిని రెండవ స్థానంలో నిలిపినట్లయితే, మీరు ఇప్పుడు ఏ స్థానంలో ఉంటారు?",
+                        "hi": "మీరు రేసులో పరుగెత్తుతూ, ఆ వ్యక్తిని రెండవ స్థానంలో నిలిపినట్లయితే, మీరు ఇప్పుడు ఏ స్థానంలో ఉంటారు?&quot"
                     },
                     "hideNumber": true,
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "First",
-                            "text": "First"
+                            "text": "First / మొదటిది (ఎంపికలను చదవవద్దు)"
                         },
                         {
                             "value": "Second",
-                            "text": "Second"
+                            "text": "Second / రెండవది (ఎంపికలను చదవవద్దు"
                         }
                     ],
                     "showOtherItem": false,
@@ -949,35 +1131,35 @@
                     "type": "radiogroup",
                     "name": "fourth_daughter_name",
                     "title": {
-                        "default": "Komal's father has 4 daughters but no sons—Tina, Mina, Rina. What is the fourth daughter's name?",
-                        "hi": "कोमल के पिता की 4 बेटियाँ हैं लेकिन कोई बेटा नहीं है - टीना, मीना, रीना। चौथी बेटी का नाम क्या है?"
+                        "default": "Komal's father has 4 daughters but no sons—Tina, Mina, Rina. What is the fourth daughter's name? / “కోమల్ తండ్రికి 4 మంది కుమార్తెలు ఉన్నారు కానీ కొడుకులు లేరు—టీనా, మినా, రీనా. నాల్గవ కుమార్తె పేరు ఏమిటి?",
+                        "hi": "“కోమల్ తండ్రికి 4 మంది కుమార్తెలు ఉన్నారు కానీ కొడుకులు లేరు—టీనా, మినా, రీనా. నాల్గవ కుమార్తె పేరు ఏమిటి??"
                     },
                     "hideNumber": true,
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Komal",
-                            "text": "Komal"
+                            "text": "Komal / కోమల్ (ఎంపికలను చదవవద్దు)"
                         },
                         {
                             "value": "Tina",
-                            "text": "Tina"
+                            "text": "Tina / టీనా (ఎంపికలను చదవవద్దు)"
                         },
                         {
                             "value": "Mina",
-                            "text": "Mina"
+                            "text": "Mina / మినా (ఎంపికలను చదవవద్దు)"
                         },
                         {
                             "value": "Rina",
-                            "text": "Rina"
+                            "text": "Rina / రినా (ఎంపికలను చదవవద్దు)"
                         },
                         {
                             "value": "Other with 'ina' ending",
-                            "text": "Other name with \"ina\" ending"
+                            "text": "Other name with \"ina\" ending / &quot;ఇనా&quot; ముగింపుతో ఇతర పేరు (ఎంపికలను చదవవద్దు)"
                         }
                     ],
                     "showOtherItem": true,
-                    "otherText": "Other (please specify)",
+                    "otherText": "Other (please specify) / ఇతర (దయచేసి పేర్కొనండి)",
                     "colCount": 0
                 }
             ]
@@ -988,59 +1170,63 @@
                 {
                     "type": "checkbox",
                     "name": "newspapers_political_news",
-                    "title": "Which newspaper do you read the most for political news and information? (choose up to 2)",
+                    "title": "Which newspaper do you read the most for political news and information? (choose up to 2) / రాజకీయ వార్తలు మరియు సమాచారం కోసం మీరు ఏ వార్తాపత్రికను ఎక్కువగా చదువుతారు? (2 వరకు ఎంచుకోండి)",
                     "isRequired": true,
                     "maxSelectedChoices": 2,
                     "choices": [
-                        "Newspaper 1",
-                        "Newspaper 2",
-                        "Newspaper 3"
+                        "1. EENADU",
+                        "2. SAKHI",
+                        "3. ANDRA JYOTHI",
+                        "4. NAMASTE TELANGANA",
+                        "5. THE INDIAN EXPRESS",
+                        "6. THE HINDHU",
+                        "7. DECCAN CHRONICLE"
                     ]
                 },
                 {
                     "type": "radiogroup",
                     "name": "whatsapp_group_frequency",
                     "title": {
-                        "default": "How often do you view WhatsApp groups?",
-                        "hi": "आप WhatsApp ग्रुप कितनी बार देखते हैं?"
+                        "default": "How often do you view WhatsApp groups? / మీరు WhatsApp సమూహాలను ఎంత తరచుగా చూస్తారు?",
+                        "hi": "మీరు WhatsApp సమూహాలను ఎంత తరచుగా చూస్తారు?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Several hours a day",
-                            "text": "Several hours a day"
+                            "text": "Several hours a day / రోజుకు చాలా గంటలు"
                         },
                         {
                             "value": "A few times a day",
-                            "text": "A few times a day"
+                            "text": "A few times a day / రోజుకు కొన్ని సార్లు"
                         },
                         {
                             "value": "Once a day",
-                            "text": "Once a day"
+                            "text": "Once a day / రోజుకు ఒకసారి"
                         },
                         {
                             "value": "A few times a week",
-                            "text": "A few times a week"
+                            "text": "A few times a week / వారానికి కొన్ని సార్లు"
                         },
                         {
                             "value": "Once a week",
-                            "text": "Once a week"
+                            "text": "Once a week / వారానికి ఒకసారి"
                         },
                         {
                             "value": "Less frequently than once a week",
-                            "text": "Less frequently than once a week"
+                            "text": "Less frequently than once a week / వారానికి ఒకసారి కంటే తక్కువ తరచుగా"
                         },
                         {
                             "value": "Never",
-                            "text": "Never"
+                            "text": "Never / ఎప్పుడూ"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ]
                 },
@@ -1049,26 +1235,26 @@
                     "name": "whatsapp_hours_spent",
                     "visibleIf": "{whatsapp_group_frequency} = 'Several hours a day' or {whatsapp_group_frequency} = 'A few times a day'",
                     "title": {
-                        "default": "How many hours a day do you spend sending and receiving information on WhatsApp groups?",
-                        "hi": "आप WhatsApp ग्रुप पर जानकारी भेजने और प्राप्त करने में प्रतिदिन कितने घंटे खर्च करते हैं?"
+                        "default": "How many hours a day do you spend sending and receiving information on WhatsApp groups? / మీరు WhatsApp సమూహాలలో సమాచారాన్ని పంపడానికి మరియు స్వీకరించడానికి రోజుకు ఎన్ని గంటలు గడుపుతారు?",
+                        "hi": "మీరు WhatsApp సమూహాలలో సమాచారాన్ని పంపడానికి మరియు స్వీకరించడానికి రోజుకు ఎన్ని గంటలు గడుపుతారు?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Up to an hour",
-                            "text": "Up to an hour"
+                            "text": "Up to an hour / ఒక గంట వరకు"
                         },
                         {
                             "value": "One to three hours",
-                            "text": "One to three hours"
+                            "text": "One to three hours / ఒకటి నుండి మూడు గంటలు"
                         },
                         {
                             "value": "Three to five hours",
-                            "text": "Three to five hours"
+                            "text": "Three to five hours / మూడు నుండి ఐదు గంటలు"
                         },
                         {
                             "value": "More than 5 hours",
-                            "text": "More than 5 hours"
+                            "text": "More than 5 hours / 5 కంటే ఎక్కువ"
                         }
                     ]
                 },
@@ -1076,56 +1262,56 @@
                     "type": "matrix",
                     "name": "whatsapp_usage_reasons",
                     "title": {
-                        "default": "I will tell you some reasons, you tell me how important they are for which you use WhatsApp?",
-                        "hi": "माई अपको कुछ कारण बताऊंगा, आप बताइये वे कितने महत्वपूर्ण हैं जिनके लिए आप WhatsApp का उपयोग करते हैं?"
+                        "default": "I will tell you some reasons, you tell me how important they are for which you use WhatsApp? / నేను మీకు కొన్ని కారణాలను చెబుతాను, మీరు whatsappని ఉపయోగించే వాటికి అవి ఎంత ముఖ్యమైనవో చెప్పండి?",
+                        "hi": "నేను మీకు కొన్ని కారణాలను చెబుతాను, మీరు whatsappని ఉపయోగించే వాటికి అవి ఎంత ముఖ్యమైనవో చెప్పండి?"
                     },
                     "isRequired": true,
                     "columns": [
                         {
                             "value": "Very important",
-                            "text": "Very important"
+                            "text": "Very important / చాలా ముఖ్యమైనది"
                         },
                         {
                             "value": "Little important",
-                            "text": "Little important"
+                            "text": "Little important / కొద్దిగా ముఖ్యమైనది"
                         },
                         {
                             "value": "Not important at all",
-                            "text": "Not important at all"
+                            "text": "Not important at all / అస్సలు ముఖ్యమైనది కాదు"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ],
                     "rows": [
                         {
                             "value": "friends_family",
-                            "text": "Talking to friends and family"
+                            "text": "Talking to friends and family / స్నేహితులు మరియు కుటుంబ సభ్యులతో మాట్లాడటం"
                         },
                         {
                             "value": "politics_news",
-                            "text": "For news and information on politics"
+                            "text": "For news and information on politics / రాజకీయాలపై వార్తలు మరియు సమాచారం కోసం"
                         },
                         {
                             "value": "jokes",
-                            "text": "Jokes"
+                            "text": "Jokes / జోకులు"
                         },
                         {
                             "value": "work",
-                            "text": "Work-related"
+                            "text": "Work-related / పనికి సంబంధించినది"
                         },
                         {
                             "value": "other_news",
-                            "text": "News and information on matters other than politics"
+                            "text": "News and information on matters other than politics / రాజకీయాలు కాకుండా ఇతర విషయాలపై వార్తలు మరియు సమాచారం"
                         },
                         {
                             "value": "calls",
-                            "text": "Voice call / video call"
+                            "text": "Voice call / video call / రాజకీయాలు కాకుండా ఇతర విషయాలపై వార్తలు మరియు సమాచారం"
                         }
                     ]
                 },
@@ -1133,46 +1319,46 @@
                     "type": "radiogroup",
                     "name": "whatsapp_news_forwarding",
                     "title": {
-                        "default": "How much do you forward news received on WhatsApp?",
-                        "hi": "आप WhatsApp पर प्राप्त खबरों को कितना फॉरवर्ड करते हैं?"
+                        "default": "How much do you forward news received on WhatsApp? / మీరు WhatsAppలో అందుకున్న వార్తలను ఎంత ఫార్వార్డ్ చేస్తారు?",
+                        "hi": "మీరు WhatsAppలో అందుకున్న వార్తలను ఎంత ఫార్వార్డ్ చేస్తారు?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Several stories a day",
-                            "text": "Several stories a day / एक दिन में कई कहानियाँ"
+                            "text": "Several stories a day / రోజుకు చాలా సార్లు"
                         },
                         {
                             "value": "A few times a day",
-                            "text": "A few times a day / दिन में कुछ बार"
+                            "text": "A few times a day / రోజుకు కొన్ని సార్లు"
                         },
                         {
                             "value": "Once a day",
-                            "text": "Once a day / दिन में एक बार"
+                            "text": "Once a day / రోజుకు ఒకసారి"
                         },
                         {
                             "value": "A few times a week",
-                            "text": "A few times a week / सप्ताह में कुछ बार"
+                            "text": "A few times a week / రోజుకు ఒకసారి"
                         },
                         {
                             "value": "Once a week",
-                            "text": "Once a week / सप्ताह में एक बार"
+                            "text": "Once a week / రోజుకు ఒకసారి"
                         },
                         {
                             "value": "Less frequently than once a week",
-                            "text": "Less frequently than once a week / सप्ताह में एक बार से कम बार"
+                            "text": "Less frequently than once a week / రోజుకు ఒకసారి"
                         },
                         {
                             "value": "Never",
-                            "text": "Never / कभी नहीं"
+                            "text": "Never / రోజుకు ఒకసారి"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / రోజుకు ఒకసారి"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / రోజుకు ఒకసారి"
                         }
                     ]
                 },
@@ -1180,34 +1366,34 @@
                     "type": "radiogroup",
                     "name": "whatsapp_news_trust",
                     "title": {
-                        "default": "How much do you trust and believe the news coming on WhatsApp?",
-                        "hi": "WhatsApp पर आने वाली खबरों पर आप कितना विश्वास और भरोसा करते हैं?"
+                        "default": "How much do you trust and believe the news coming on WhatsApp? / WhatsAppలో వస్తున్న వార్తలను మీరు ఎంతవరకు నమ్ముతునారు మరియు విశ్వసిస్తున్నారు?",
+                        "hi": "WhatsAppలో వస్తున్న వార్తలను మీరు ఎంతవరకు నమ్ముతునారు మరియు విశ్వసిస్తున్నారు?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "A great deal",
-                            "text": "A great deal / काफ़ी ज़ायदा"
+                            "text": "A great deal / చాలా నమ్మకం"
                         },
                         {
                             "value": "A moderate amount",
-                            "text": "A moderate amount / एक मध्यम मात्रा"
+                            "text": "A moderate amount / ఒక మోస్తరు నమ్మకం"
                         },
                         {
                             "value": "Not much belief",
-                            "text": "Not much belief / ज्यादा विश्वास नहीं"
+                            "text": "Not much belief / చాలా నమ్మకం లేదు"
                         },
                         {
                             "value": "Not at all",
-                            "text": "Not at all / बिलकुल नहीं"
+                            "text": "Not at all / అస్సలు కాదు"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ]
                 }
@@ -1220,45 +1406,84 @@
                     "type": "radiogroup",
                     "name": "phone_internet_access_duration",
                     "title": {
-                        "default": "For how long has internet access been available on the phone?",
-                        "hi": "फ़ोन पर इंटरनेट की सुविधा कितने समय से उपलब्ध है?"
+                        "default": "For how long has internet access been available on the phone? / ఫోన్‌లో ఎంతకాలం నుండి ఇంటర్నెట్ యాక్సెస్ అందుబాటులో ఉంది మీ ఫోన్లో ?",
+                        "hi": "ఫోన్‌లో ఎంతకాలం నుండి ఇంటర్నెట్ యాక్సెస్ అందుబాటులో ఉంది మీ ఫోన్లో ?"
                     },
                     "isRequired": true,
                     "choices": [
                         {
                             "value": "Less than a week",
-                            "text": "Less than a week / एक सप्ताह से भी कम"
+                            "text": "Less than a week / వారం కంటే తక్కువ"
                         },
                         {
                             "value": "About a month",
-                            "text": "About a month / लगभग एक महीना"
+                            "text": "About a month / సుమారు ఒక నెల"
                         },
                         {
                             "value": "About 6 months",
-                            "text": "About 6 months / लगभग 6 महीने"
+                            "text": "About 6 months / సుమారు 6 నెలలు"
                         },
                         {
                             "value": "About 1 year",
-                            "text": "About 1 year / लगभग 1 वर्ष"
+                            "text": "About 1 year / సుమారు 1 సంవత్సరం"
                         },
                         {
                             "value": "About 2 years",
-                            "text": "About 2 years / लगभग 2 वर्ष"
+                            "text": "About 2 years / సుమారు 2 సంవత్సరాలు"
                         },
                         {
                             "value": "More than 2 years",
-                            "text": "More than 2 years / 2 वर्ष से अधिक"
+                            "text": "More than 2 years / 2 సంవత్సరాల కంటే ఎక్కువ"
                         },
                         {
                             "value": "Don't know",
-                            "text": "Don't know"
+                            "text": "Don't know / తెలియదు (చదవవద్దు)"
                         },
                         {
                             "value": "Refused",
-                            "text": "Refused"
+                            "text": "Refused / తిరస్కరించబడింది (చదవవద్దు)"
                         }
                     ]
-                }
+                },
+                {
+                    "type": "matrix",
+                    "name": "technology_familiarity",
+                    "title": "How familiar are you with the following computer and Internet-related items? (1 = No understanding, 5 = Full understanding) / కింది కంప్యూటర్ మరియు ఇంటర్నెట్ సంబంధిత అంశాలతో మీకు ఎంతవరకు పరిచయం ఉంది? దయచేసి 1 మరియు 5 మధ్య సంఖ్యను ఎంచుకోండి, ఇక్కడ 1 అవగాహన లేదు&quot; మరియు 5 అంశం యొక్క &quot;పూర్తి అవగాహన&quot;ని సూచిస్తుంది",
+                    "isRequired": true,
+                    "columns": [
+                      { "value": 1, "text": "1" },
+                      { "value": 2, "text": "2" },
+                      { "value": 3, "text": "3" },
+                      { "value": 4, "text": "4" },
+                      { "value": 5, "text": "5" }
+                    ],
+                    "rows": [
+                      { "value": "phishing", "text": "Phishing" },
+                      { "value": "hashtag", "text": "Hashtag" },
+                      { "value": "jpg", "text": "JPG" },
+                      { "value": "malware", "text": "Malware" },
+                      { "value": "cache", "text": "Cache" },
+                      { "value": "rss", "text": "RSS" }
+                    ]
+                },
+              {
+                "type": "matrix",
+                "name": "technology_agreement",
+                "title": "Please indicate your disagreement or agreement with the following statements: (1 = Strongly disagree, 2 = Somewhat disagree, 3 = Somewhat agree, 4 = Strongly agree, 5 = Skip) / దయచేసి కింది స్టేట్‌మెంట్‌లతో మీ అసమ్మతిని లేదా ఒప్పందాన్ని సూచించండి: [1-తీవ్రంగా ఏకీభవించలేదు, 2-కొంతవరకు ఏకీభవించలేదు, 3-కొంతవరకు అంగీకరిస్తున్నాను, 4-బలంగా అంగీకరిస్తున్నాను లేదా 5 &quot;దాటవేయి&quot;]",
+                "isRequired": true,
+                "columns": [
+                  { "value": 1, "text": "Strongly disagree" },
+                  { "value": 2, "text": "Somewhat disagree" },
+                  { "value": 3, "text": "Somewhat agree" },
+                  { "value": 4, "text": "Strongly agree" },
+                  { "value": 5, "text": "Skip" }
+                ],
+                "rows": [
+                  { "value": "ask_friends_for_help", "text": "I prefer to ask friends how to use any new technological gadget instead of trying to figure it out myself. / ఏదైనా కొత్త సాంకేతిక పరికరము నేను గుర్తించడానికి ప్రయత్నించే బదులు దాన్ని ఎలా ఉపయోగించాలో స్నేహితులను అడగడానికి నేను ఇష్టపడతాను. (ఐచ్ఛికాలు- 1,2,3,4,5)" },
+                  { "value": "technology_daily_life", "text": "I feel like information technology is a part of my daily life. / ఇన్ఫర్మేషన్ టెక్నాలజీ రోజు వారి జీవితంలో ఒక భాగమని నేను భావిస్తున్నాను. (ఐచ్ఛికాలు- 1,2,3,4,5)" },
+                  { "value": "technology_makes_work_easy", "text": "Using information technology makes it easier to do my work. / ఇన్ఫర్మేషన్ టెక్నాలజీ ఉపయోగించడం నా పనిని సులభతరం చేస్తుంది (ఐచ్ఛికాలు- 1,2,3,4,5" }
+                ]
+              }
             ]
         },        
         {
@@ -1268,22 +1493,22 @@
                     "type": "html",
                     "name": "phase2_intro",
                     "html": {
-                        "default": "<p><strong>We are done with phase 1! Now in phase two, I will be giving you the opportunity to donate WhatsApp data from groups. You can share with us public, semi-public and semi-private groups. This helps us learn about the information on social media.</strong></p>",
-                        "hi": "<p><strong>हमने चरण 1 पूरा कर लिया है! अब चरण दो में मैं आपको समूहों से व्हाट्सएप डेटा दान करने का अवसर दूंगा। आप हमारे साथ सार्वजनिक, अर्ध-सार्वजनिक और अर्ध-निजी समूहों को साझा कर सकते हैं। इससे हमें सोशल मीडिया पर मौजूद जानकारी के बारे में जानने में मदद मिलती है।</strong></p>"
+                        "default": "<p><strong> We are done with phase 1! Now in the phase two I will be giving you the opportunity to donate whatsapp data from groups. You can share with us public, semi-public and semi-private groups. This helps us learn about the information on social media. / మేము దశ 1 పూర్తి చేసాము! ఇప్పుడు రెండవ దశలో నేను మీకు గ్రూప్‌ల నుండి వాట్సాప్ డేటాను విరాళంగా ఇచ్చే అవకాశాన్ని ఇస్తున్నాను. మీరు పబ్లిక్, సెమీ పబ్లిక్ మరియు సెమీ-ప్రైవేట్ గ్రూపులను మాతో పంచుకోవచ్చు. ఇది సోషల్ మీడియాలోని సమాచారం గురించి తెలుసుకోవడానికి మాకు సహాయపడుతుంది.</strong></p>",
+                        "hi": "<p><strong>మేము దశ 1 పూర్తి చేసాము! ఇప్పుడు రెండవ దశలో నేను మీకు గ్రూప్‌ల నుండి వాట్సాప్ డేటాను విరాళంగా ఇచ్చే అవకాశాన్ని ఇస్తున్నాను. మీరు పబ్లిక్, సెమీ పబ్లిక్  మరియు సెమీ-ప్రైవేట్ గ్రూపులను మాతో పంచుకోవచ్చు. ఇది సోషల్ మీడియాలోని సమాచారం గురించి తెలుసుకోవడానికి మాకు సహాయపడుతుంది.</strong></p>"
                     }
                 },
                 {
                     "type": "html",
                     "name": "qr_code_instructions",
                     "html": {
-                        "default": "<p>Now I will be asking you to scan a QR code after which you are given an option of groups whose data you are willing to donate. I want to reiterate that any data you share will be anonymised, and it is only for academic purposes. We are not linked to any platform, political party or government agency.</p>",
-                        "hi": "<p>अब मैं आपसे एक QR कोड स्कैन करने के लिए कहूंगा जिसके बाद आपको उन समूहों का विकल्प दिया जाएगा जिनका डेटा आप दान करने के लिए तैयार हैं। मैं फिर से दोहराना चाहता हूं कि आपके द्वारा साझा किया गया कोई भी डेटा गुमनाम रखा जाएगा, और यह केवल शैक्षणिक उद्देश्यों के लिए है। हम किसी भी मंच, राजनीतिक दल या सरकारी एजेंसी से जुड़े नहीं हैं।</p>"
+                        "default": "<p>Now I will be asking you to scan a QR code after which you are given an option of groups whose data you are willing to donate. I want to reiterate that any data you share will be anonymised, and it is only for academic purposes we are not linked to any platform, political party or government agency. Could you please scan this QR? / ఇప్పుడు నేను మిమ్మల్ని QR కోడ్‌ని స్కాన్ చేయమని అడుగుతున్నాను, ఆ తర్వాత మీరు విరాళం ఇవ్వడానికి సిద్ధంగా ఉన్న డేటా సమూహాల ఎంపిక మీకు అందించబడుతుంది. మీరు భాగస్వామ్యం చేసే ఏదైనా డేటా అనామకీకరించబడుతుందని నేను పునరుద్ఘాటించాలనుకుంటున్నాను మరియు ఇది కేవలం విద్యాపరమైన ప్రయోజనాల కోసం మాత్రమే మేము ఏ ప్లాట్‌ఫారమ్, రాజకీయ పార్టీ లేదా ప్రభుత్వ ఏజెన్సీకి లింక్ చేయబడము. దయచేసి మీరు ఈ QRని స్కాన్ చేయగలరా?</p>",
+                        "hi": "<p>ఇప్పుడు నేను మిమ్మల్ని QR కోడ్‌ని స్కాన్ చేయమని అడుగుతున్నాను, ఆ తర్వాత మీరు విరాళం ఇవ్వడానికి సిద్ధంగా ఉన్న డేటా సమూహాల ఎంపిక మీకు అందించబడుతుంది. మీరు భాగస్వామ్యం చేసే ఏదైనా డేటా అనామకీకరించబడుతుందని నేను పునరుద్ఘాటించాలనుకుంటున్నాను మరియు ఇది కేవలం విద్యాపరమైన ప్రయోజనాల కోసం మాత్రమే మేము ఏ ప్లాట్‌ఫారమ్, రాజకీయ పార్టీ లేదా ప్రభుత్వ ఏజెన్సీకి లింక్ చేయబడము. దయచేసి మీరు ఈ QRని స్కాన్ చేయగలరా?</p>"
                     }
                 },
                 {
                     "type": "html",
                     "name": "enumerator_instructions",
-                    "html": "<p><strong>Enumerator Instructions:</strong></p><ol><li>Open WhatsApp on the user's phone.</li><li>Tap Menu or Settings and select <strong>Linked Devices</strong>.</li><li>Select Link a new device.</li><li>Press the button below to Generate QR Code.</li><li>Scan the QR code from the user's phone.</li></ol>"
+                    "html": "<p><strong>Enumerator Instructions:</strong></p><ol><li>Open WhatsApp on the user's phone. / వినియోగదారు ఫోన్‌లో WhatsApp తెరవండి. </li><li>Tap Menu or Settings and select / మెనూ లేదా సెట్టింగ్‌లను నొక్కండి మరియు లింక్డ్ పరికరాలను ఎంచుకోండి. <strong>Linked Devices</strong>.</li><li>Select Link a new device. / కొత్త పరికరాన్ని లింక్ చేయి ఎంచుకోండి. </li><li>Press the button below to Generate QR Code. / QR కోడ్‌ని రూపొందించడానికి దిగువ బటన్‌ను నొక్కండి. </li><li>Scan the QR code from the user's phone. / వినియోగదారు ఫోన్ నుండి QR కోడ్‌ని స్కాన్ చేయండి.</li></ol>"
                 },
                 {
                     "type": "radiogroup",
@@ -1292,12 +1517,12 @@
                     "isRequired": true,
                     "choices": [
                         {
-                            "value": "Scanned",
+                            "value": "Scanned / స్కాన్ చేయబడింది",
                             "text": "Scanned"
                         },
                         {
                             "value": "Refused to scan",
-                            "text": "Refused to scan"
+                            "text": "Refused to scan / స్కాన్ చేయడానికి నిరాకరించారు"
                         }
                     ]
                 },
@@ -1312,7 +1537,68 @@
                     "title": "Generate QR Code"
                 }
             ]
-        }
-        
+        },
+        {
+            "title": "Social Media Information Survey - Stage 3 / సోషల్ మీడియా సమాచారం సర్వే - మూడవ దశ",
+            "introduction": {
+              "text": [
+                "We are now ready to introduce stage three! In a few days, you will be introduced to a source who will send you messages to help you learn what useful information on social media looks like. / మేము ఇప్పుడు మూడవ దశను పరిచయం చేయడానికి సిద్ధంగా ఉన్నాము! సోషల్ మీడియాలో ఉపయోగకరమైన సమాచారం ఏమిటో తెలుసుకోవడానికి మీకు సహాయపడే సందేశాలను పంపే మూలం కొద్ది రోజుల్లో మీకు పరిచయం చేయబడుతుంది.",
+                "You can think of them as a helpline to gain knowledge. Alongside, you will also receive messages from our team asking for your opinion on certain posts. Let’s try one example right now! / మీరు వాటిని జ్ఞానాన్ని పొందేందుకు ఒక హెల్ప్‌లైన్‌గా భావించవచ్చు. దానితో పాటు, మీరు మా బృందం నుండి నిర్దిష్ట పోస్ట్‌లపై మీ అభిప్రాయాన్ని అడుగుతూ సందేశాలను కూడా అందుకుంటారు. ఇప్పుడు ఒక ఉదాహరణ ప్రయత్నిద్దాం!"
+              ],
+              "instructions": [
+                "Message: “Hi/hello [enter 10001000]” to the number 10001000 [to be updated]. / సందేశం: “హాయ్/హలో [10001000 నమోదు చేయండి]” 10001000 నంబర్‌కు [నవీకరించబడాలి].",
+                "Now you have received a question asking, 'Do you believe this news is true?' / ఇప్పుడు మీకు “ఈ వార్త నిజమని మీరు నమ్ముతున్నారా?” అని అడిగే ప్రశ్న వచ్చింది.",
+                "Please select an option below. / దయచేసి క్రింద ఒక ఎంపికను ఎంచుకోండి."
+              ]
+            },
+            "questions": [
+              {
+                "id": "q1",
+                "text": "Do you believe this news is true? / ఈ వార్త నిజమని మీరు నమ్ముతున్నారా?",
+                "options": [
+                  "It is definitely true / ఇది ఖచ్చితంగా నిజం",
+                  "It is somewhat likely true / ఇది కొంతవరకు నిజం",
+                  "It is somewhat likely to be false / ఇది కొంతవరకు తప్పు అయ్యే అవకాశం ఉంది",
+                  "It is definitely false / ఇది ఖచ్చితంగా అబద్ధం",
+                  "Don't know / తెలియదు"
+                ],
+                "response_type": "single_choice"
+              },
+              {
+                "id": "int_1",
+                "text": "Do you have any questions for me? / మీకు నా కోసం ఏవైనా ప్రశ్నలు ఉన్నాయా?",
+                "response_type": "text"
+              }
+            ],
+            "points_notification": {
+              "text": "Thank you for the response. As you can see now, we will inform you of the points you collected through the response. Your current total is 255! / ప్రతిస్పందనకు ధన్యవాదాలు. మీరు ఇప్పుడు చూడగలిగినట్లుగా, ప్రతిస్పందన ద్వారా మీరు సేకరించిన పాయింట్లను మేము మీకు తెలియజేస్తాము. మీ ప్రస్తుత మొత్తం 255!"
+            },
+            "final_instructions": {
+              "text": [
+                "We can help you save this number as 'Questions Point' and you will be receiving messages for the next two weeks via this number from us. / మేము ఈ నంబర్‌ను 'క్వశ్చన్స్ పాయింట్'గా సేవ్ చేయడంలో మీకు సహాయం చేస్తాము మరియు మీరు మా నుండి ఈ నంబర్ ద్వారా వచ్చే రెండు వారాల పాటు సందేశాలను స్వీకరిస్తారు.",
+                "After two weeks, I will call you to schedule another time for a short survey and feedback. / రెండు వారాల తర్వాత, చిన్న సర్వే మరియు ఫీడ్‌బ్యాక్ కోసం మరొక సమయాన్ని షెడ్యూల్ చేయడానికి నేను మీకు కాల్ చేస్తాను.",
+                "Here is 250 rupees as a thank you for today. On the last day, you will also receive the sum total of your collected points as rupees. / ఇదిగో ఈరోజు కృతజ్ఞతగా 250 రూపాయలు. చివరి రోజున, మీరు సేకరించిన పాయింట్ల మొత్తాన్ని కూడా మీరు రూపాయలుగా స్వీకరిస్తారు."
+              ]
+            },
+            "thank_you_message": "Thank you again for your time today! / ఈరోజు మీ సమయాన్ని వెచ్చించినందుకు మళ్ళీ ధన్యవాదాలు!",
+            "end_questions": [
+              {
+                "id": "end_1",
+                "text": "Enumerator: please mention which was the last question that the participant answered? / ఎన్యుమరేటర్: దయచేసి పాల్గొనేవారు సమాధానం ఇచ్చిన చివరి ప్రశ్న ఏది అని పేర్కొనండి?",
+                "response_type": "text"
+              },
+              {
+                "id": "end_2",
+                "text": "Enumerator: please list any questions where the response was wrong/uncertain due to limitations of the options. / ముగింపు_2: ఎన్యూమరేటర్: ఎంపికల పరిమితుల కారణంగా ప్రతిస్పందన తప్పు/అనిశ్చితంగా ఉన్న ఏవైనా ప్రశ్నలను దయచేసి జాబితా చేయండి.",
+                "response_type": "text"
+              },
+              {
+                "id": "end_3",
+                "text": "Enumerator: did you face any other issues in the survey? Please mention / ముగింపు_3: ఎన్యుమరేటర్: మీరు సర్వేలో ఏవైనా ఇతర సమస్యలను ఎదుర్కొన్నారా? దయచేసి పేర్కొనండి",
+                "response_type": "text"
+              }
+            ]
+          }
+            
     ]
 }
