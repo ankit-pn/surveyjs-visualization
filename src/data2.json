@@ -855,15 +855,15 @@
                         },
                         {
                             "value": "Most of the Love Jihad stories are fake, some are true",
-                            "text": "Most of the Love Jihad stories are fake, some are true / లవ్ జిహాద్ కథలు చాలా వరకు నకిలీవి, కొన్ని నిజం"
+                            "text": "Most of the Love Jihad stories are fake, some are true / లవ్ జిహాద్ కథలు చాలా వరకు నకిలీవి, కొన్ని నిజం (2)"
                         },
                         {
                             "value": "Most of the Love Jihad stories are true, some are fake",
-                            "text": "Most of the Love Jihad stories are true, some are fake / లవ్ జిహాద్ కథలు చాలా వరకు నిజం, కొన్ని నకిలీవి"
+                            "text": "Most of the Love Jihad stories are true, some are fake / లవ్ జిహాద్ కథలు చాలా వరకు నిజం, కొన్ని నకిలీవి (3)"
                         },
                         {
                             "value": "All of the Love Jihad stories are true",
-                            "text": "All of the Love Jihad stories are true / లవ్ జిహాద్ కథలన్నీ నిజమే "
+                            "text": "All of the Love Jihad stories are true / లవ్ జిహాద్ కథలన్నీ నిజమే (4)"
                         }
                     ]
                 },
@@ -1177,14 +1177,16 @@
                     "choices": [
                         "1. EENADU",
                         "2. SAKHI",
-                        "3. ANDRA JYOTHI",
-                        "4. NAMASTE TELANGANA",
-                        "5. THE INDIAN EXPRESS",
-                        "6. THE HINDU",
-                        "7. DECCAN CHRONICLE",
+                        "3. ANDRA JYOTHI",
+                        "4. NAMASTE TELANGANA",
+                        "5. THE INDIAN EXPRESS",
+                        "6. THE HINDU",
+                        "7. DECCAN CHRONICLE",
                         "8. The HANS INDIA"
-                    ]
-                },
+                    ],
+                    "hasOther": true,
+                    "otherText": "Other (please specify)"
+                },                
                 {
                     "type": "radiogroup",
                     "name": "whatsapp_group_frequency",
