@@ -18,11 +18,11 @@
                     "choices": [
                         {
                             "value": 1,
-                            "text": "Person 1 / వ్యక్తి 1"
+                            "text": "Shiva"
                         },
                         {
                             "value": 2,
-                            "text": "Person 2 / వ్యక్తి 2"
+                            "text": "Lakka"
                         }
                     ],
                     "showOtherItem": true,
@@ -77,6 +77,7 @@
                           "14:00",
                           "15:00",
                           "16:00",
+                          "17:00",
                           "18:00"
                         ]
                       
@@ -830,11 +831,11 @@
                         },
                         {
                             "value": "Fertility rates declined at the same rate for both Hindus and Muslims",
-                            "text": "Fertility rates declined at the same rate for both Hindus and Muslims / సంతానోత్పత్తి రేట్లు హిందువులు మరియు ముస్లింలకు ఒకే రేటుతో తగ్గాయి"
+                            "text": "Fertility rates declined at the same rate for both Hindus and Muslims / సంతానోత్పత్తి రేట్లు హిందువులు మరియు ముస్లింలకు ఒకే రేటుతో తగ్గాయి (2)"
                         },
                         {
                             "value": "Fertility rates declined for Muslims more than Hindus",
-                            "text": "Fertility rates declined for Muslims more than Hindus / హిందువుల కంటే ముస్లింలకు సంతానోత్పత్తి రేట్లు తగ్గాయి"
+                            "text": "Fertility rates declined for Muslims more than Hindus / హిందువుల కంటే ముస్లింలకు సంతానోత్పత్తి రేట్లు తగ్గాయి (3)"
                         }
                     ]
                 },
@@ -1179,8 +1180,9 @@
                         "3. ANDRA JYOTHI",
                         "4. NAMASTE TELANGANA",
                         "5. THE INDIAN EXPRESS",
-                        "6. THE HINDHU",
-                        "7. DECCAN CHRONICLE"
+                        "6. THE HINDU",
+                        "7. DECCAN CHRONICLE",
+                        "8. The HANS INDIA"
                     ]
                 },
                 {
@@ -1325,8 +1327,8 @@
                     "isRequired": true,
                     "choices": [
                         {
-                            "value": "Several stories a day",
-                            "text": "Several stories a day / రోజుకు చాలా సార్లు"
+                            "value": "Several times a day",
+                            "text": "Several times a day / రోజుకు చాలా సార్లు"
                         },
                         {
                             "value": "A few times a day",
